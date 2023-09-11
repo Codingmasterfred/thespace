@@ -3,6 +3,7 @@
   margin: "0";
   padding: "0";
   box-sizing: border-box;
+  font-family: Helvetica Neue;
 
 }
 
@@ -108,8 +109,16 @@ justify-content:space-between
   display:flex;
   flex-wrap: nowrap;
   border-radius: 25%;
- 
+  font-family: Helvetica Neue;
   align-items: center
+}
+
+#CircleProfileContainer{
+  border:2px solid black;
+  border-radius: 50%;
+  min-width: 60px;
+  height:40px;
+  padding: 30px 8px;
 }
 
 /*-----------------------------------End Of Navbar Component-----------------------------------*/
@@ -156,7 +165,7 @@ justify-content:space-between
   /* border:10px solid black; */
   display:flex;
   justify-content:center;
-  align-items:cenetr;
+  align-items:center;
   overflow:  hidden;
 }
 
@@ -300,30 +309,69 @@ width:93%;
   justify-content: space-around;
 }
 
-#PartfolioSnapchot{
+#PortfolioH4{
+  text-align:center
+}
+
+#PortfolioSnapchot{
   display:flex;
   justify-content: space-around;
   padding:10px;
   height:31%;
   border-radius: 25px;
   border:1px solid black;
+  padding:20px  
 }
 
-#PartfolioSnapchot div{
+#PortfolioSnapchot div{
  
   border:1px solid black;
   width:30%;
   height:100%;
   display:flex;
   align-items: center;
+  justify-content: center;
+}
+
+.file-input {
+  display: none;
+}
+
+/* Style the label to look like an icon and center it */
+.file-label {
+  cursor: pointer;
+  display: flex;
+  height:100%;
+  border:1px solid black;
+  width:100%;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 #ResumeContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding:10px;
   border:1px solid black;
   border-radius: 25px;
-  height:50%;
+  height:55%;
 text-align:center
+}
+
+#ResumeTextArea{
+  width:100%;
+  height:70%
+}
+
+#ResumeSubmitButton{
+  background-color: black;
+  font-family: Helvetica Neue;
+  width:20%;
+  align-self: center;
 }
 
 #ProfileContainer{
@@ -331,6 +379,7 @@ text-align:center
   width:23%;
   /* border:1px solid black; */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -338,7 +387,25 @@ text-align:center
 #ProfileContentContainer{
   border:5px solid black;
   width:100%;
-  height:85%;
-  border-radius: 25px;
+  height:90%;
+  border-radius: 30%;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-evenly;
+  align-items:center;
 
+
+}
+
+#ProfileContentContainer img{
+  border:1px solid black;
+  padding:20px;
+  margin-top:30px ;
+  width:70%
+}
+
+#ProfileContentContainer input{
+  margin:5px;
+width:70%;
+text-align:center
 }

@@ -37,10 +37,13 @@ const [LoginOrOut, setLoginOrOut] = useState(false)
         </div>
         <div id="secondNavContainer">
 
+         {LoginOrOut ? <div id="CircleProfileContainer">
+
+         </div> :
         <div id="ButtonsContainer">
-        <div id="ButtonOutline"><h3 onClick={Switch}>{LoginOrOut ? "Log Out" :"Log In"}</h3></div>
-        <div id="ButtonOutline"><h3 onClick={Switch}>{LoginOrOut ? "Log Out" :"Sign Up"}</h3></div>
-        </div>
+         <div id="ButtonOutline"><h3 onClick={Switch}>Log In</h3></div>
+        <div id="ButtonOutline"><h3 onClick={Switch}>Sign Up</h3></div>
+        </div>}
         </div>
     </div>
         

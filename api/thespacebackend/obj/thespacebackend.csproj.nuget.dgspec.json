@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fgent\\OneDrive\\Documents\\GitHub\\thespace\\api\\thespacebackend\\thespacebackend.csproj": {}
+    "c:\\Users\\Public\\Downloads\\thespace\\api\\thespacebackend\\thespacebackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fgent\\OneDrive\\Documents\\GitHub\\thespace\\api\\thespacebackend\\thespacebackend.csproj": {
+    "c:\\Users\\Public\\Downloads\\thespace\\api\\thespacebackend\\thespacebackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fgent\\OneDrive\\Documents\\GitHub\\thespace\\api\\thespacebackend\\thespacebackend.csproj",
+        "projectUniqueName": "c:\\Users\\Public\\Downloads\\thespace\\api\\thespacebackend\\thespacebackend.csproj",
         "projectName": "thespacebackend",
-        "projectPath": "C:\\Users\\fgent\\OneDrive\\Documents\\GitHub\\thespace\\api\\thespacebackend\\thespacebackend.csproj",
+        "projectPath": "c:\\Users\\Public\\Downloads\\thespace\\api\\thespacebackend\\thespacebackend.csproj",
         "packagesPath": "C:\\Users\\fgent\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fgent\\OneDrive\\Documents\\GitHub\\thespace\\api\\thespacebackend\\obj\\",
+        "outputPath": "c:\\Users\\Public\\Downloads\\thespace\\api\\thespacebackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fgent\\AppData\\Roaming\\NuGet\\NuGet.Config",
