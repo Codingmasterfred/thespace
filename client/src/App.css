@@ -1,38 +1,344 @@
-.App {
+/*---------------------------------------------------/* Selecting All----------------------------------*/
+* {
+  margin: "0";
+  padding: "0";
+  box-sizing: border-box;
+
+}
+
+/*----------------------------------------------------Navbar Component-------------------------------------------------------*/
+
+/*The Navbar*/
+#navbar {
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid black */
+}
+
+/*The Container inside of navbar used to shorten and center the navbar*/
+#navContainer {
+  width: 93%;
+  display: flex;
+
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 35px;
+  padding: 5px 30px
+}
+
+/*The second container inside of the navContainer which contains the link to different pages*/
+#firstNavContainer{
+  /* border:1px solid black; */
+  display:flex;
+  flex-shrink:150;
+  width:75%;
+  justify-content:space-around
+}
+
+#secondNavContainer{
+  /* border:1px solid black; */
+  display:flex;
+  min-width:25%;
+  justify-content:flex-end
+}
+
+
+
+/*The Search Bar itself which contain the button */
+.search-bar {
+  display: flex;
+  background-color: #00000000;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/*The label element which surround the Input,svg/searchIcon and search/submit button*/
+#Label {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
+
+/* The svg / The Search Icon*/
+Svg {
+  margin-left: 10px
+}
+
+/*The Search Input element*/
+.search-input {
+  
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: 16px;
+}
+
+/*The Search button */
+.search-button {
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 9px;
+  transition: background-color 0.3s;
+}
+
+/*The Search button hover effect */
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+#ButtonsContainer{
+  display:flex;
+  min-width:230px;
+  /* border:1px solid black; */
+height:100%;
+justify-content:space-between
+
+}
+
+/*Is the Container surrounding the login button */
+#ButtonOutline {
+  border: 3px solid black;
+  padding: 2px 8px;
+  display:flex;
+  flex-wrap: nowrap;
+  border-radius: 25%;
+ 
+  align-items: center
+}
+
+/*-----------------------------------End Of Navbar Component-----------------------------------*/
+
+/*----------------------------------Start Of Home Component------------------------------*/
+
+/*Is the Container over the entire Home component*/
+#HomeComponentContainer {
+  display: flex;
+  justify-content: center;
+}
+
+/*Is the container that has all content inside it and it is center by the HomeComponentContainer*/
+#HomeContainer {
+  width: 93%;
+  /* border: 1px solid black; */
+  display:flex;
+  flex-direction: column;
+  column-gap: 20px;
+  justify-content: space-evenly;
+}
+
+/*Is the top half of the Home Container, Containing About The Space container and the Photo container */
+#TopContainer {
+  width: 100%;
+  height: 60%;
+  /* border: 1px solid black; */
+  display:flex;
+  justify-content:space-between
+}
+
+/*About the space container contain the About the space paragraph */
+#AboutTheSpace {
+  height: 100%;
+  width: 45%;
+  text-align: center;
+  /* border:10px solid black  */
+}
+
+/*The Image Container*/
+#PhotoContainer{
+  height:377px;
+  width:50%;
+  /* border:10px solid black; */
+  display:flex;
+  justify-content:center;
+  align-items:cenetr;
+  overflow:  hidden;
+}
+
+/*Is the Actual image*/
+#PhotoContainer img{
+  height:80%;
+  object-fit: contain;
+  width:min-content;
+}
+
+/*Is the bottom half of the Home Container, Containing Bottom 3 category and the containers */
+#BottomContainer{
+  width: 100%;
+  height: 39.5%;
+  /* border: 10px solid black; */
+  display:flex;
+  justify-content:space-evenly;
+}
+
+/*Is the 3 Categories inside of the Bottom container */
+#BottomContainer div{
+  height: 100%;
+  width:28%;
+  display:flex;
+  flex-direction: column;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*----------------------------------End Of Home Component------------------------------*/
+
+/*----------------------------------Start Of PricingComponent (still within the home component)---------------------------*/
+
+
+/*Is the Container that has all content inside it from PricingContainer and it is center by the HomeContainer*/
+#PricingContainer {
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid black;
+  display:flex;
+  text-align:center;
+  flex-direction:column
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*The H1 After second Container*/
+#PrimaryH1{
+  font-family: Helvetica Neue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* the containers for the PricingTiers*/
+.PricingTiers {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+/*the containers for each tier*/
+.PricingTier {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 20px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* the hovering effect of each tier*/
+.PricingTier:hover {
+  transform: translateY(-10px);
+}
+
+/*The H2 inside of each PricingTier container*/
+.PricingTier h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/*The p element inside of each pricing tier container*/
+.PricingTier p {
+  margin: 10px 0;
+  color: #000000;
+}
+
+/*The span element inside of each pricing tier container*/
+.PricingTier span {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/*The button use to create profiles */
+.Create-profile-button {
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/*the hovering effect for the buttons*/
+.Create-profile-button:hover {
+  background-color: #0056b3;
+}
+
+/*---------------------------------------------End Of PricingComponent---------------------------- */
+
+/*---------------------------------------------Start Of UserProfile Component (separate component)*/
+
+#UserProfileComponentContainer{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* border:1px solid black; */
+  height:85vh;
+  width:100%;
+
 }
 
-.App-link {
-  color: #61dafb;
+#UserProfileContent{
+  display:flex;
+  justify-content: space-between;
+width:93%;
+/* border:10px solid black */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#profileH1{
+  text-align:center;
+  font-family: Helvetica Neue;
+}
+
+#SnapShotAndResumeContainer{
+  height:90%;
+  width:70%;
+  /* border:10px solid red; */
+  display:flex;
+  flex-direction:column;
+  justify-content: space-around;
+}
+
+#PartfolioSnapchot{
+  display:flex;
+  justify-content: space-around;
+  padding:10px;
+  height:31%;
+  border-radius: 25px;
+  border:1px solid black;
+}
+
+#PartfolioSnapchot div{
+ 
+  border:1px solid black;
+  width:30%;
+  height:100%;
+  display:flex;
+  align-items: center;
+}
+
+#ResumeContainer{
+  padding:10px;
+  border:1px solid black;
+  border-radius: 25px;
+  height:50%;
+text-align:center
+}
+
+#ProfileContainer{
+  height:90%;
+  width:23%;
+  /* border:1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ProfileContentContainer{
+  border:5px solid black;
+  width:100%;
+  height:85%;
+  border-radius: 25px;
+
 }
