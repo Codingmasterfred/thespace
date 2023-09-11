@@ -2,27 +2,35 @@ require('dotenv').config();
 
 // Requiring express after installing it
 const express = require('express');
-// Envoking the function
-const app = express();
+
+const bodyParser = require('body-parser');
+
+//import database connection
+const pool = require('./middleware/db')
+
+
 //Invoking cors to protect use security on our routes
 const cors = require('cors');
-//Importing the routes we have
-const postRoutes = require('./routes/post');
-const userRoutes = require('./routes/user');
-const profileRoutes = require('./routes/userpost');
+
+// Envoking the function
+const app = express();
+
+//Middleware
+app.use(express.json());
+app.use(bodyParser.json());
+//app.use(getUserInfo);
 
 //Importing authentication middleware
 //const { getUserInfo } = require('./middleware/authentication');
 
-//Middleware
-app.use(express.json());
-app.use(cors());
-//app.use(getUserInfo);
+//Defining routes
+const placeholderRoutes = require('./routes/placeholder');
 
-// Setting up the Routes
-app.use('/post', postRoutes)
-app.use('/user', userRoutes)
-app.use('/profile', profileRoutes)
+//Middleware
+app.use(cors());
+
+// Routes
+app.use('/placeholder', placeholderRoutes)
 
 //Using the next parameter lets us use different middleware,
 //without it our middleware would get stuck at the first one.
