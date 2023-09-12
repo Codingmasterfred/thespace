@@ -4,7 +4,7 @@
   "description": "node js express serve for web application with user profiles, job lisitings, and messaging functionality",
   "main": "server.js",
   "scripts": {
-    "start": "watch server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

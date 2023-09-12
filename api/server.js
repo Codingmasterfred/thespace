@@ -24,13 +24,13 @@ app.use(bodyParser.json());
 //const { getUserInfo } = require('./middleware/authentication');
 
 //Defining routes
-const placeholderRoutes = require('./routes/placeholder');
+//const placeholderRoutes = require('./routes/placeholder');
 
 //Middleware
 app.use(cors());
 
 // Routes
-app.use('/placeholder', placeholderRoutes)
+//app.use('/placeholder', placeholderRoutes)
 
 //Using the next parameter lets us use different middleware,
 //without it our middleware would get stuck at the first one.
