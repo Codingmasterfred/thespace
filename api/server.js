@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 //import database connection
-const pool = require('./middleware/db')
+const sequelize = require('./middleware/db')
 
 
 //Invoking cors to protect use security on our routes

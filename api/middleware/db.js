@@ -1,17 +1,23 @@
-//db configurations for MSSQL
+//db configurations for Sequelize to connect to MSSQL
 
-const sql = require('mssql');
+const { Sequelize } = require('sequelize');
 
-const config = {
-  user: 'TheSpaceDemo',
-  password: 'spacin0u+',
-  server: '(localdb)\\MSSQLLocalDB',
-  database: 'TheSpace',
-  options: {
-    enableArithAbort: true,
+const sequelize = new Sequelize({
+  dialect: 'mssql',
+  database: process.env.DB_DATABASE,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: 'LocalHost',
+  port: process.env.PORT,
+  dialectOptions: {
+    options: {
+      encrypt: true,
+    },
   },
-};
+});
 
-const pool = new sql.ConnectionPool(config);
+// Log when the application starts
+console.log('Starting the application...');
 
-module.exports = pool;
+module.exports = sequelize;
+
