@@ -6,7 +6,16 @@ class FreelanceTalent extends Model {}
 
 FreelanceTalent.init(
   {
-    category_tags: DataTypes.STRING,
+    freelancer_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true, //set freelancer_id as primary key
+        autoIncrement: true, //Automatically increment the primary key
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false, // user_id is a required field
+      },
+    category_tags: DataTypes.ARRAY(DataTypes.STRING),
     portfolio: DataTypes.STRING,
   },
   {

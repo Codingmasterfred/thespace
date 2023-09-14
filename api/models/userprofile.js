@@ -5,6 +5,11 @@ class UserProfile extends Model {}
 
 UserProfile.init(
   {
+    user_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true, // Set user_id as the primary key
+        autoIncrement: true, // Automatically increment the primary key
+      },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,7 +24,10 @@ UserProfile.init(
     },
     profile_photo: DataTypes.STRING,
     bio: DataTypes.TEXT,
-    user_type: DataTypes.STRING,
+    user_type: {
+        type: DataTypes.ENUM('Leadership', 'Freelancer'), //Defines ENUM values
+        allowNull: false,
+    },
   },
   {
     sequelize, // Pass the Sequelize connection instance

@@ -6,6 +6,15 @@ class LeadershipTalent extends Model {}
 
 LeadershipTalent.init(
   {
+    leadership_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true, //set leadership_id as primary key
+        autoIncrement: true, //Automatically increment the primary key
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false, // user_id is a required field
+      },
     company_name: {
       type: DataTypes.STRING,
       allowNull: false,
