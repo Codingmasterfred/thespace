@@ -2,6 +2,7 @@ import React from "react"
 import "./App.css"
 import { Link } from 'react-router-dom';
 
+
 function HomeComponent() {
 
 
@@ -52,7 +53,7 @@ function HomeComponent() {
                             <h2>Tier 2</h2>
                             <p>Additional features</p>
                             <span>$20/month</span>
-                            <button className="Create-profile-button"> <Link to="/UserProfile" className="Create-profile-button">
+                            <button className="Create-profile-button"> <Link to="/freelancerProfile" className="Create-profile-button">
     Create Profile
   </Link></button>
                         </div>
@@ -60,7 +61,9 @@ function HomeComponent() {
                             <h2>Tier 3</h2>
                             <p>Premium features</p>
                             <span>$30/month</span>
-                            <button className="Create-profile-button">Create Profile</button>
+                            <button className="Create-profile-button"><Link to="/corporateProfile" className="Create-profile-button">
+    Create Profile
+  </Link></button>
                         </div>
                     </div>
                 </div>
