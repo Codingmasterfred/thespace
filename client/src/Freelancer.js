@@ -24,6 +24,7 @@ function UserProfileComponent() {
     const [Link1,setLink1] = useState("")
     const [Link2,setLink2] = useState("")
     const [LinkArray,setLinkArray] = useState([])
+    const [warnedAboutPortfolioLinks,setWarnedAboutPortfolioLinks] = useState(false)
 
 
     let FetchLocationIQData = async () => {
@@ -185,81 +186,79 @@ function UserProfileComponent() {
             `profilepicture: ${picfile}, name: ${Name}, password: ${Password}, email: ${Email}, phonenumber: ${PhoneNumber}, city: ${City}, state: ${State}, portfolio: ${ListOfPortfolioFiles}, pitch: ${Pitch}, resume: ${Resume}`
         );
         if (!picfile) {
-            toast.error("Must Select Profile Picture. Your profile picture helps employers recognize you and make a positive impression.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+            toast.error("Please select a profile picture. Your profile picture is important for employers to recognize you and make a positive impression.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-        if (!Name) {
-            toast.error("Name is required. Your name is essential for personalizing your profile and communication with employers.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+          }
+          
+          if (!Name) {
+            toast.error("Please enter your name. Your name is essential for personalizing your profile and facilitating communication with employers.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-        if (!Password) {
-            toast.error("Password is required. A strong password helps protect your account from unauthorized access.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+          }
+          
+          if (!Password) {
+            toast.error("Please enter a password. A strong password helps protect your account from unauthorized access.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-        if (!Email) {
-            toast.error("Email is required. Your email is used for communication and notifications from employers.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+          }
+          
+          if (!Email) {
+            toast.error("Please enter your email address. Your email is used for communication and receiving notifications from employers.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-        if (!PhoneNumber) {
-            toast.error("Phone Number is required. Employers may need to contact you by phone.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+          }
+          
+          if (!PhoneNumber) {
+            toast.error("Please enter your phone number. Employers may need to contact you by phone.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-        if (!City) {
-            toast.error("City is required. Providing your location helps employers find candidates in their area.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+          }
+          
+          if (!City) {
+            toast.error("Please enter your city. Providing your location helps employers find candidates in their area.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-        if (!State) {
-            toast.error("State is required. Your state helps employers further narrow down your location.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
+          }
+          
+          if (!State) {
+            toast.error("Please enter your state. Your state helps employers further narrow down your location.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
             });
             return;
-        }
-
-
-        if (!ListOfPortfolioFiles.length && !warnedAboutPortfolio) {
-
+          }
+          
+          if (!ListOfPortfolioFiles.length && !warnedAboutPortfolio) {
             // Warn the user about the importance of Portfolio Files on the first try.
-            toast.warning("Adding Portfolio Files is recommended. Your portfolio showcases your work and skills, improving your chances of getting noticed by employers.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 8000,
-
+            toast.warning("We recommend adding Portfolio Files. Your portfolio showcases your work and skills, which can significantly improve your chances of getting noticed by employers.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 8000,
             });
-            setwarnedAboutPortfolio(true) // Add a variable to track the warning.
-            return
-        }
-
-        if(LinkArray.length < 0){
-            toast.warning("Adding Portfolio Files is recommended. Your portfolio showcases your work and skills, improving your chances of getting noticed by employers.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 8000,
-
+            setwarnedAboutPortfolio(true); // Add a variable to track the warning.
+            return;
+          }
+          
+          if (LinkArray.length < 2 && !warnedAboutPortfolioLinks ) {
+            toast.warning("We recommend adding at least two portfolio links. Your portfolio links are crucial for showcasing your work and skills to potential employers.", {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 8000,
             });
-        }
+            setWarnedAboutPortfolioLinks(true);
+            return;
+          }
 
         
 
