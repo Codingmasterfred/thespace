@@ -15,6 +15,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  min-width:832px;
   /* border: 1px solid black */
 }
 
@@ -280,11 +281,12 @@ justify-content:space-between
 /*---------------------------------------------Start Of UserProfile Component (separate component)*/
 
 #UserProfileComponentContainer{
-  display: flex;
+  display:flex;
   justify-content: center;
   /* border:1px solid black; */
-  height:85vh;
+  min-height:85vh;
   width:100%;
+  min-width:832px;
 
 }
 
@@ -299,6 +301,7 @@ width:93%;
   text-align:center;
   font-family: Helvetica Neue;
 }
+
 
 #SnapShotAndResumeContainer{
   height:90%;
@@ -342,7 +345,7 @@ width:93%;
   cursor: pointer;
   display: flex;
   height:100%;
-  border:1px solid black;
+  /* border:1px solid black; */
   width:100%;
   align-items: center;
   justify-content: center;
@@ -351,9 +354,35 @@ width:93%;
   border-radius: 10px;
 }
 
+#ProfilePicDiv{
+  cursor: pointer;
+  display: flex;
+ margin:0;
+ padding:0;
+  align-items: flex-end;
+  justify-content: center;
+  width:60%;
+  height:20%;
+  background-color: #ffffff;
+  box-sizing: border-box;
+
+}
+
+#ProfilePicDivImg{
+ width:100%;
+ height:100%;
+ box-sizing: border-box;
+  
+  border:1px solid black;
+  margin:0;
+  padding:0;
+  object-fit:cover;
+}
+
 #ResumeContainer{
   display:flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-around;
   padding:10px;
   border:1px solid black;
@@ -363,14 +392,15 @@ text-align:center
 }
 
 #ResumeTextArea{
-  width:100%;
-  height:70%
+  min-width:80%;
+  min-height:20%
 }
 
 #ResumeSubmitButton{
   background-color: black;
   font-family: Helvetica Neue;
-  width:20%;
+  
+  min-width:20%;
   align-self: center;
 }
 
@@ -387,19 +417,17 @@ text-align:center
 #ProfileContentContainer{
   border:5px solid black;
   width:100%;
-  height:90%;
+  min-height:90%;
   border-radius: 30%;
   display:flex;
   flex-direction:column;
   justify-content: space-evenly;
   align-items:center;
-
-
 }
 
 #ProfileContentContainer img{
-  border:1px solid black;
-  padding:20px;
+  /* border:1px solid black; */
+  
   margin-top:30px ;
   width:70%
 }
