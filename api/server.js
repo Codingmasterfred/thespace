@@ -1,36 +1,19 @@
 require('dotenv').config();
-
-// Requiring express after installing it
 const express = require('express');
-
-const bodyParser = require('body-parser');
-
-//import database connection
-const sequelize = require('./middleware/db')
-
-
-//Invoking cors to protect use security on our routes
 const cors = require('cors');
+const db = require("./models/   ");
 
-// Envoking the function
 const app = express();
 
-//Middleware
+// parse json requests 
 app.use(express.json());
-app.use(bodyParser.json());
-//app.use(getUserInfo);
 
-//Importing authentication middleware
-//const { getUserInfo } = require('./middleware/authentication');
-
-//Defining routes
-//const placeholderRoutes = require('./routes/placeholder');
-
-//Middleware
 app.use(cors());
 
+//initializing sequelize creating model tables if they don't already exist
+db.sequelize.sync();
+
 // Routes
-//app.use('/placeholder', placeholderRoutes)
 
 //Using the next parameter lets us use different middleware,
 //without it our middleware would get stuck at the first one.
