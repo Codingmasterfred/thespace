@@ -37,7 +37,7 @@ const Navbar = () => {
               cursor: "pointer",
             },
           }}
-        >
+          >
           The Space
         </Typography>
         {isNonMobileScreens && (
