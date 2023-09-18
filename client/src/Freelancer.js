@@ -48,10 +48,17 @@ function UserProfileComponent() {
             } else {
                 console.log("Unexpected data structure:", response.data[0].display_name);
             }
-
+            
             console.log("LocationIQ", response);
         } catch (error) {
+            console.log("Catch")
+            setCancelRequest(true);
+            toast.error("Enter Valid Location.", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000, // Automatically close after 5 seconds
+            });
             console.log("locationIQ error", error);
+            return
         }
     };
     console.log("LinkArray",LinkArray)
@@ -177,7 +184,7 @@ function UserProfileComponent() {
     function PostRequest(event) {
         event.preventDefault();
         FetchLocationIQData();
-        if (cancelRequest) {
+        if (cancelRequest == true) {
             console.log("It's not inside of USA");
             return;
         }
