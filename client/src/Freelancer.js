@@ -470,7 +470,7 @@ function UserProfileComponent() {
 
                         
                         <input onChange={Link2function}
-                        value={Link1} // Bind the input value to Link1 state
+                        value={Link2} // Bind the input value to Link1 state
                          style={{
                             width: "40%", borderRadius: " 25px",
                             boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1", textAlign: "center"
