@@ -11,13 +11,23 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD:package.json
     "mui": "^0.0.1",
+=======
+    "bootstrap": "^5.3.1",
+>>>>>>> 57e1cf3332a3bd5d323e218a787d5f1b93724f93:client/package.json
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD:package.json
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
+=======
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "^5.0.1",
+>>>>>>> 57e1cf3332a3bd5d323e218a787d5f1b93724f93:client/package.json
     "web-vitals": "^2.1.4"
   },
   "scripts": {
