@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const userProfileSchema = new mongoose.Schema({
+    first_name:String,
+    last_name: String,
     username: String,
     email: String,
     password: String,
@@ -11,5 +13,6 @@ const userProfileSchema = new mongoose.Schema({
         enum: ['Leadership', 'Freelancer'],
     }
 });
+const UserProfile = mongoose.model('UserProfile', userProfileSchema);
 
-module.exports = mongoose.model('UserProfile', userProfileSchema);
+module.exports = UserProfile;
