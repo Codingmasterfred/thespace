@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const db = require("./models/   ");
 
 const app = express();
 
@@ -10,8 +9,6 @@ app.use(express.json());
 
 app.use(cors());
 
-//initializing sequelize creating model tables if they don't already exist
-db.sequelize.sync();
 
 // Routes
 
