@@ -3,7 +3,8 @@ require('dotenv').config();
 
 // Import the MongoDB middleware
 const connectToMongoDB = require('./middleware/db');
-
+const seedDatabase = require("./seeders/seed");
+// seedDatabase();
 const express = require('express');
 const cors = require('cors');
 
@@ -37,6 +38,8 @@ app.get('/test', (req, res) => {
     res.send('This means that it works :)');
 });
 //Listen for request
-app.listen(process.env.PORT, () =>{
+app.listen(process.env.PORT, async () =>{
     console.log(` 🔅 Listening on Port`, process.env.PORT);
+    await connectToMongoDB();
+    // await seedDatabase();
 });

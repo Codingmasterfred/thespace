@@ -4,9 +4,7 @@ const userProfilesSeed = require('./userProfileSeed'); // import seed file
 const UserProfile = require('../models/userProfileModel'); // import Mongoose model
 
 async function seedDatabase() {
-    try {
-      await connectToMongoDB(); // using middleware to connect to MongoDB
-  
+    try {  
       // loop through the seed data and insert into the database
       for (const userProfileData of userProfilesSeed) {
         const userProfile = new UserProfile(userProfileData);
@@ -19,4 +17,5 @@ async function seedDatabase() {
     }
   }
   
-  seedDatabase();
+//   seedDatabase();
+module.exports = seedDatabase
