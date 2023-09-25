@@ -1,4 +1,9 @@
+//Load enviornment variables from .env file
 require('dotenv').config();
+
+// Import the MongoDB middleware
+const connectToMongoDB = require('./middleware/db');
+
 const express = require('express');
 const cors = require('cors');
 
@@ -9,6 +14,15 @@ app.use(express.json());
 
 app.use(cors());
 
+// Middleware to connect to MongoDB
+app.use(async (req, res, next) => {
+    try {
+      req.mongoClient = await connectToMongoDB();
+      next();
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 // Routes
 
