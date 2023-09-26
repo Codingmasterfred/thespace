@@ -1,7 +1,11 @@
+//Load enviornment variables from .env file
 require('dotenv').config();
+
+// Import the MongoDB middleware
+const connectToMongoDB = require('./middleware/db');
+//const seedDatabase = require("./seeders/seed");
 const express = require('express');
 const cors = require('cors');
-const db = require("./models/   ");
 
 const app = express();
 
@@ -10,22 +14,28 @@ app.use(express.json());
 
 app.use(cors());
 
-//initializing sequelize creating model tables if they don't already exist
-db.sequelize.sync();
+// Middleware to connect to MongoDB
+//Using the next parameter lets us use different middleware,
+//without it our middleware would get stuck at the first one.
+app.use(async (req, res, next) => {
+    try {
+      req.mongoClient = await connectToMongoDB();
+      console.log()
+      next();
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 // Routes
 
-//Using the next parameter lets us use different middleware,
-//without it our middleware would get stuck at the first one.
-app.use((req, res, next) => {
-    console.log(req.path, req.method);
-    next();
-});
 //Test Route
 app.get('/test', (req, res) => {
     res.send('This means that it works :)');
 });
 //Listen for request
-app.listen(process.env.PORT, () =>{
+app.listen(process.env.PORT, async () =>{
     console.log(` 🔅 Listening on Port`, process.env.PORT);
+    //await connectToMongoDB();
+    //await seedDatabase();
 });

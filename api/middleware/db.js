@@ -1,23 +1,23 @@
-//db configurations for Sequelize to connect to MSSQL
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const { Sequelize } = require('sequelize');
+// Connection URI stored in environment variable for security purposes
+const uri = process.env.MONGODB_URI;
 
-const sequelize = new Sequelize({
-  dialect: 'mssql',
-  database: process.env.DB_DATABASE,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: 'LocalHost',
-  port: process.env.PORT,
-  dialectOptions: {
-    options: {
-      encrypt: true,
-    },
-  },
-});
+// Connect to MongoDB
+async function connectToMongoDB() {
+  try {
+    // Connecting to MongoDB
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-// Log when the application starts
-console.log('Starting the application...');
+    console.log('Connected to MongoDB Atlas');
+  } catch (error) {
+    console.error('Error connecting to MongoDB Atlas', error);
+    throw error;
+  }
+}
 
-module.exports = sequelize;
-
+module.exports = connectToMongoDB;
