@@ -29,7 +29,6 @@ const userProfilesSeed = [
         bio: 'Marketing manager',
         user_type: 'Leadership',
     },
-    // Add more user profiles as needed
 ];
 
 module.exports = userProfilesSeed;
