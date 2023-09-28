@@ -44,19 +44,19 @@ function HomeComponent() {
                     <div className="PricingTiers">
                         <div className="PricingTier">
                             <h2>Tier 1</h2>
-                            <p>Basic features</p>
+                            <p>Public features</p>
                             <span>$10/month</span>
                             <button className="Create-profile-button">Create Profile</button>
                         </div>
                         <div className="PricingTier">
                             <h2>Tier 2</h2>
-                            <p>Additional features</p>
+                            <p>Freelancer</p>
                             <span>$20/month</span>
                             <button className="Create-profile-button">Create Profile</button>
                         </div>
                         <div className="PricingTier">
                             <h2>Tier 3</h2>
-                            <p>Premium features</p>
+                            <p>Corporate</p>
                             <span>$30/month</span>
                             <button className="Create-profile-button"> <Link to="/UserProfile" className="Create-profile-button">
     Create Profile
