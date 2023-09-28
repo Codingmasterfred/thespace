@@ -44,28 +44,33 @@ function Corporate() {
     const [modal1Title3, setModal1Title3] = useState("")
     const [modal1Description3, setModal1Description3] = useState("")
     const [postedDate3, setPostedDate3] = useState("")
-    const [showNextArrow,setShowNextArrow] = useState(false)
+    const [showNextArrow, setShowNextArrow] = useState(false)
+    const [mapNow, startMapping] = useState(false)
+    const [notloop, setnotloop] = useState(2)
+    if (notloop > 0) {
+        if (modal1Set1 & modal1Set2 & modal1Set3) {
+            startMapping(true)
+            setShow1(false);
+            setModal1Set1(false);
+            setModal1Title1("");
+            setModal1Description1("");
+            setPostedDate1("");
 
+            setShow2(false);
+            setModal1Set2(false);
+            setModal1Title2("");
+            setModal1Description2("");
+            setPostedDate2("");
 
-    if(modal1Set1 & modal1Set2 & modal1Set3){
-        // setShowNextArrow(true)
-        // setShow1(false);
-        // setModal1Set1(false);
-        // setModal1Title1("");
-        // setModal1Description1("");
-        // setPostedDate1("");
-      
-        // setShow2(false);
-        // setModal1Set2(false);
-        // setModal1Title2("");
-        // setModal1Description2("");
-        // setPostedDate2("");
-      
-        // setShow3(false);
-        // setModal1Set3(false);
-        // setModal1Title3("");
-        // setModal1Description3("");
-        // setPostedDate3("");
+            setShow3(false);
+            setModal1Set3(false);
+            setModal1Title3("");
+            setModal1Description3("");
+            setPostedDate3("");
+
+            setnotloop(0)
+        }
+
     }
 
     let FetchLocationIQData = async () => {
@@ -97,17 +102,17 @@ function Corporate() {
     };
 
 
-     const handleNext = () => {
-    if (currentIndex + 3 < jobListings.length) {
-      setCurrentIndex(currentIndex + 3);
-    }
-  };
+    const handleNext = () => {
+        if (currentIndex + 3 < jobListings.length) {
+            setCurrentIndex(currentIndex + 3);
+        }
+    };
 
-  const handlePrevious = () => {
-    if (currentIndex - 3 >= 0) {
-      setCurrentIndex(currentIndex - 3);
-    }
-  };
+    const handlePrevious = () => {
+        if (currentIndex - 3 >= 0) {
+            setCurrentIndex(currentIndex - 3);
+        }
+    };
 
     const handleClose1 = () => {
         setShow1(false)
@@ -115,7 +120,7 @@ function Corporate() {
     const handleShow1 = () => setShow1(true);
 
     function SubmitJobListing1() {
-        if(modal1Title1 === "" || modal1Description1 === ""){
+        if (modal1Title1 === "" || modal1Description1 === "") {
             handleClose1()
             return
         }
@@ -123,7 +128,7 @@ function Corporate() {
         const formattedDate = currentDate.toLocaleString();
         setPostedDate1(formattedDate)
         setModal1Set1(true)
-        setJobListings([...jobListings,{title:modal1Title1,description:modal1Description1,postedTime:formattedDate}])
+        setJobListings([...jobListings, { title: modal1Title1, description: modal1Description1, postedTime: postedDate1 }])
         handleClose1()
     }
 
@@ -134,7 +139,7 @@ function Corporate() {
     const handleShow2 = () => setShow2(true);
 
     function SubmitJobListing2() {
-        if(modal1Title2 === "" || modal1Description2 === ""){
+        if (modal1Title2 === "" || modal1Description2 === "") {
             handleClose2()
             return
         }
@@ -142,7 +147,7 @@ function Corporate() {
         const formattedDate = currentDate.toLocaleString();
         setPostedDate2(formattedDate)
         setModal1Set2(true)
-        setJobListings([...jobListings,{title:modal1Title2,description:modal1Description2,postedTime:formattedDate}])
+        setJobListings([...jobListings, { title: modal1Title2, description: modal1Description2, postedTime: postedDate2 }])
         handleClose2()
     }
 
@@ -152,7 +157,7 @@ function Corporate() {
     const handleShow3 = () => setShow3(true);
 
     function SubmitJobListing3() {
-        if(modal1Title3 === "" || modal1Description3 === ""){
+        if (modal1Title3 === "" || modal1Description3 === "") {
             handleClose3()
             return
         }
@@ -160,15 +165,15 @@ function Corporate() {
         const formattedDate = currentDate.toLocaleString();
         setPostedDate3(formattedDate)
         setModal1Set3(true)
-        setJobListings([...jobListings,{title:modal1Title3,description:modal1Description3,postedTime:formattedDate}])
+        setJobListings([...jobListings, { title: modal1Title3, description: modal1Description3, postedTime: formattedDate }])
         handleClose3()
     }
 
-console.log(jobListings)
 
 
 
-    
+
+
 
 
 
@@ -340,11 +345,97 @@ console.log(jobListings)
                 <div id="SnapShotAndResumeContainer">
 
                     <h4 id="PortfolioH4">Jobs Listing </h4>
-                    <div id="PortfolioSnapchot">
-                    {/* <i class="bi bi-arrow-left-circle"></i> */}
-                        <div id="PortfolioItems" >
+
+
+
+                    {mapNow ? (
+                        <div id="PortfolioSnapchot">
+                            {jobListings.map((job, index) => (
+                                <div key={index} style={{ position: "relative", width: "30%", height: "100%" }}>
+                                    <button
+                                        onClick={() => {
+                                            if(index == 0){
+
+                                                setModal1Set1(false);
+                                                setModal1Title1("");
+                                                setModal1Description1("");
+                                            }else if (index== 1){
+
+                                                setModal1Set2(false);
+                                                    setModal1Title2("");
+                                                    setModal1Description2("");
+                                            } else if(index == 2){
+                                                setModal1Set3(false);
+                                                setModal1Title3("");
+                                                setModal1Description3("");
+                                            }
+                                        }}
+                                        style={{
+                                            position: "absolute",
+                                            top: 1, // Adjust top position as needed
+                                            left: -4, // Adjust right position as needed
+                                            zIndex: 1, // Ensure the button is on top of the iframe
+                                            backgroundColor: "white", // Set button background color
+                                            borderRadius: "50%", // Make it circular if needed
+                                            border: "1px solid #ccc", // Add a border
+                                            padding: "5px", // Adjust padding as needed
+                                        }}
+                                    >
+                                        <i className="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            if(index == 0){
+
+                                                setModal1Set1(true);
+                                                setModal1Title1(modal1Title1);
+                                                setModal1Description1(modal1Description1);
+                                                handleShow1();
+                                            }
+                                            else if(index == 1 ){
+
+                                                setModal1Set2(true);
+                                                setModal1Title2(modal1Title1);
+                                                setModal1Description2(modal1Description1);
+                                                handleShow2();
+                                            }
+                                            else if( index == 2){
+                                                
+                                                setModal1Set1(true);
+                                                setModal1Title1(modal1Title1);
+                                                setModal1Description1(modal1Description1);
+                                                handleShow1();
+                                            }
+                                        }}
+                                        style={{
+                                            alignSelf: "center",
+                                            position: "absolute",
+                                            bottom: 27, // Adjust top position as needed
+                                            left: -4, // Adjust right position as needed
+                                            zIndex: 1, // Ensure the button is on top of the iframe
+                                            backgroundColor: "white", // Set button background color
+                                            borderRadius: "50%", // Make it circular if needed
+                                            border: "1px solid #ccc", // Add a border
+                                            padding: "5px", // Adjust padding as needed
+                                        }}
+                                    >
+                                        <i class="bi bi-pen"></i>
+                                    </button>
+                                    <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width: "100%", height: "100%", overflowY: "auto" }}>
+                                        <h6 value={job.} style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{index == 0 && modal1Title1 || index == 1 && modal1Title2 || index == 2 && modal1Title3}</h6>
+                                        <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{index == 0 ? postedDate1 : index == 1 ? postedDate2 : index == 2 && postedDate3}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) :
+
+                        <div id="PortfolioSnapchot">
+
+
+
                             {modal1Set1 ? (
-                                <button style={{ position: "relative", width: "100%", height: "100%" }}>
+                                <div style={{ position: "relative", width: "30%", height: "100%" }}>
                                     <button
                                         onClick={() => {
                                             setModal1Set1(false)
@@ -366,8 +457,8 @@ console.log(jobListings)
                                         <i className="fas fa-trash-alt"></i>
                                     </button>
                                     <button
-                                    
-                                        onClick={() =>{ 
+
+                                        onClick={() => {
                                             setModal1Set1(true)
                                             setModal1Title1(modal1Title1)
                                             setModal1Description1(modal1Description1)
@@ -375,7 +466,7 @@ console.log(jobListings)
 
                                         }}
                                         style={{
-                                            alignSelf:"center",
+                                            alignSelf: "center",
                                             position: "absolute",
                                             bottom: 27, // Adjust top position as needed
                                             left: -4, // Adjust right position as needed
@@ -386,73 +477,72 @@ console.log(jobListings)
                                             padding: "5px", // Adjust padding as needed
                                         }}
                                     >
-                                      <i class="bi bi-pen"></i>
+                                        <i class="bi bi-pen"></i>
 
                                     </button>
                                     <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width: "100%", height: "100%", overflowY: "auto" }}>
                                         <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{modal1Title1}</h6>
                                         <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{postedDate1}</p>
                                     </div>
-                                </button>
+                                </div>
 
 
                             ) : (
-                                
-                                <button onClick={handleShow1} style={{ position: "relative", width: "100%", height: "100%" , display:"flex", alignItems:"center", justifyContent:"center"}}>
+
+                                <button onClick={handleShow1} style={{ position: "relative", width: "30%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60%" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
-</svg>
+                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                                    </svg>
 
                                 </button>
-                                
-
-                            )}
-                        </div>
 
 
-                        <Modal show={show1} onHide={handleClose1}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            value={modal1Title1}
-                                            onChange={(e) => { setModal1Title1(e.target.value) }}
-                                            placeholder="Job Title"
-                                            autoFocus
-                                        />
-                                    </Form.Group>
-                                    <Form.Group
-                                        className="mb-3"
-                                        controlId="exampleForm.ControlTextarea1"
-                                    >
-                                        <Form.Label>Job Description</Form.Label>
-                                        <Form.Control
-                                            placeholder="Job Description"
-                                            value={modal1Description1}
-                                            onChange={(e) => { setModal1Description1(e.target.value) }}
-                                            as="textarea"
-                                            rows={9} />
-                                    </Form.Group>
-                                </Form>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose1}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={SubmitJobListing1}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                            )
+                            }
 
-                        <div>
-                        {modal1Set2 ? (
-                                <button style={{ position: "relative", width: "100%", height: "100%" }}>
+                            <Modal show={show1} onHide={handleClose1}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Modal heading</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>Email address</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                value={modal1Title1}
+                                                onChange={(e) => { setModal1Title1(e.target.value) }}
+                                                placeholder="Job Title"
+                                                autoFocus
+                                            />
+                                        </Form.Group>
+                                        <Form.Group
+                                            className="mb-3"
+                                            controlId="exampleForm.ControlTextarea1"
+                                        >
+                                            <Form.Label>Job Description</Form.Label>
+                                            <Form.Control
+                                                placeholder="Job Description"
+                                                value={modal1Description1}
+                                                onChange={(e) => { setModal1Description1(e.target.value) }}
+                                                as="textarea"
+                                                rows={9} />
+                                        </Form.Group>
+                                    </Form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose1}>
+                                        Close
+                                    </Button>
+                                    <Button variant="primary" onClick={SubmitJobListing1}>
+                                        Save Changes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                            {/* {showNextArrow && <i class="bi bi-arrow-Right-circle"></i>} */}
+
+                            {modal1Set2 ? (
+                                <div style={{ position: "relative", width: "30%", height: "100%" }}>
                                     <button
                                         onClick={() => {
                                             setModal1Set2(false)
@@ -474,8 +564,8 @@ console.log(jobListings)
                                         <i className="fas fa-trash-alt"></i>
                                     </button>
                                     <button
-                                    
-                                        onClick={() =>{ 
+
+                                        onClick={() => {
                                             setModal1Set2(true)
                                             setModal1Title2(modal1Title2)
                                             setModal1Description2(modal1Description2)
@@ -483,7 +573,7 @@ console.log(jobListings)
 
                                         }}
                                         style={{
-                                            alignSelf:"center",
+                                            alignSelf: "center",
                                             position: "absolute",
                                             bottom: 27, // Adjust top position as needed
                                             left: -4, // Adjust right position as needed
@@ -494,74 +584,74 @@ console.log(jobListings)
                                             padding: "5px", // Adjust padding as needed
                                         }}
                                     >
-                                      <i class="bi bi-pen"></i>
+                                        <i class="bi bi-pen"></i>
 
                                     </button>
                                     <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width: "100%", height: "100%", overflowY: "auto" }}>
                                         <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{modal1Title2}</h6>
                                         <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{postedDate2}</p>
                                     </div>
-                                </button>
+                                </div>
 
 
                             ) : (
-                                
-                                <button onClick={handleShow2} style={{ position: "relative", width: "100%", height: "100%" , display:"flex", alignItems:"center", justifyContent:"center"}}>
+
+                                <button onClick={handleShow2} style={{ position: "relative", width: "30%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60%" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
-</svg>
+                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                                    </svg>
 
                                 </button>
-                                
+
 
                             )}
-                        </div>
 
 
-                        <Modal show={show2} onHide={handleClose2}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            value={modal1Title2}
-                                            onChange={(e) => { setModal1Title2(e.target.value) }}
-                                            placeholder="Job Title"
-                                            autoFocus
-                                        />
-                                    </Form.Group>
-                                    <Form.Group
-                                        className="mb-3"
-                                        controlId="exampleForm.ControlTextarea1"
-                                    >
-                                        <Form.Label>Job Description</Form.Label>
-                                        <Form.Control
-                                            placeholder="Job Description"
-                                            value={modal1Description2}
-                                            onChange={(e) => { setModal1Description2(e.target.value) }}
-                                            as="textarea"
-                                            rows={9} />
-                                    </Form.Group>
-                                </Form>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose2}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={SubmitJobListing2}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+
+                            <Modal show={show2} onHide={handleClose2}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Modal heading</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>Email address</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                value={modal1Title2}
+                                                onChange={(e) => { setModal1Title2(e.target.value) }}
+                                                placeholder="Job Title"
+                                                autoFocus
+                                            />
+                                        </Form.Group>
+                                        <Form.Group
+                                            className="mb-3"
+                                            controlId="exampleForm.ControlTextarea1"
+                                        >
+                                            <Form.Label>Job Description</Form.Label>
+                                            <Form.Control
+                                                placeholder="Job Description"
+                                                value={modal1Description2}
+                                                onChange={(e) => { setModal1Description2(e.target.value) }}
+                                                as="textarea"
+                                                rows={9} />
+                                        </Form.Group>
+                                    </Form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose2}>
+                                        Close
+                                    </Button>
+                                    <Button variant="primary" onClick={SubmitJobListing2}>
+                                        Save Changes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
 
 
-                        <div>
-                        {modal1Set3 ? (
-                                <button style={{ position: "relative", width: "100%", height: "100%" }}>
+
+                            {modal1Set3 ? (
+                                <div style={{ position: "relative", width: "100%", height: "100%" }}>
                                     <button
                                         onClick={() => {
                                             setModal1Set3(false)
@@ -583,8 +673,8 @@ console.log(jobListings)
                                         <i className="fas fa-trash-alt"></i>
                                     </button>
                                     <button
-                                    
-                                        onClick={() =>{ 
+
+                                        onClick={() => {
                                             setModal1Set3(true)
                                             setModal1Title3(modal1Title3)
                                             setModal1Description3(modal1Description3)
@@ -592,7 +682,7 @@ console.log(jobListings)
 
                                         }}
                                         style={{
-                                            alignSelf:"center",
+                                            alignSelf: "center",
                                             position: "absolute",
                                             bottom: 27, // Adjust top position as needed
                                             left: -4, // Adjust right position as needed
@@ -603,71 +693,76 @@ console.log(jobListings)
                                             padding: "5px", // Adjust padding as needed
                                         }}
                                     >
-                                      <i class="bi bi-pen"></i>
+                                        <i class="bi bi-pen"></i>
 
                                     </button>
                                     <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width: "100%", height: "100%", overflowY: "auto" }}>
                                         <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{modal1Title3}</h6>
                                         <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{postedDate3}</p>
                                     </div>
-                                </button>
+                                </div>
 
 
                             ) : (
-                                
-                                <button onClick={handleShow3} style={{ position: "relative", width: "100%", height: "100%" , display:"flex", alignItems:"center", justifyContent:"center"}}>
+
+                                <button onClick={handleShow3} style={{ position: "relative", width: "30%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60%" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
-</svg>
+                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                                    </svg>
 
                                 </button>
-                                
+
 
                             )}
+
+
+
+                            <Modal show={show3} onHide={handleClose3}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Modal heading</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>Email address</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                value={modal1Title3}
+                                                onChange={(e) => { setModal1Title3(e.target.value) }}
+                                                placeholder="Job Title"
+                                                autoFocus
+                                            />
+                                        </Form.Group>
+                                        <Form.Group
+                                            className="mb-3"
+                                            controlId="exampleForm.ControlTextarea1"
+                                        >
+                                            <Form.Label>Job Description</Form.Label>
+                                            <Form.Control
+                                                placeholder="Job Description"
+                                                value={modal1Description3}
+                                                onChange={(e) => { setModal1Description3(e.target.value) }}
+                                                as="textarea"
+                                                rows={9} />
+                                        </Form.Group>
+                                    </Form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose3}>
+                                        Close
+                                    </Button>
+                                    <Button variant="primary" onClick={SubmitJobListing3}>
+                                        Save Changes
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+
                         </div>
 
 
-                        <Modal show={show3} onHide={handleClose3}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            value={modal1Title3}
-                                            onChange={(e) => { setModal1Title3(e.target.value) }}
-                                            placeholder="Job Title"
-                                            autoFocus
-                                        />
-                                    </Form.Group>
-                                    <Form.Group
-                                        className="mb-3"
-                                        controlId="exampleForm.ControlTextarea1"
-                                    >
-                                        <Form.Label>Job Description</Form.Label>
-                                        <Form.Control
-                                            placeholder="Job Description"
-                                            value={modal1Description3}
-                                            onChange={(e) => { setModal1Description3(e.target.value) }}
-                                            as="textarea"
-                                            rows={9} />
-                                    </Form.Group>
-                                </Form>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose3}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={SubmitJobListing3}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                    }
 
-                    </div>
+
                     <div style={{ margin: "10px", display: "flex", justifyContent: "space-around " }}>
                         <input onChange={Link1function}
                             value={Link1} // Bind the input value to Link1 state
