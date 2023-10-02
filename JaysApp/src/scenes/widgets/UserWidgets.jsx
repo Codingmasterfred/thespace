@@ -1,4 +1,4 @@
-import { ManageAccounts,EditOutlined,LocationOutLined,WorkOutlineOutlined } from "@mui/icons-material";
+import { ManageAccounts,EditOutlined,LocationOutLined,WorkOutlineOutlined, LocationOnOutlined } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/icons-material";
 import UserImage from "../../components/UserImage";
 import FlexBetween from "../../components/FlexBetween";
@@ -21,7 +21,68 @@ const UserWidget =({ userId, picturePath }) => {
         {
             method: "GET",
             headers: { Authorization: `Bearer ${token}`},
-            
-        })
+
+        });
+        const data = await response.json();
+        setUser(data);
+    };
+
+    useEffect(() => {
+        setUser();
+    }, [])
+
+    if(!user)
+    {
+        return null;
     }
+
+    const {
+        firstName,
+        lastName,
+        location,
+        occupation,
+        viewedProfile,
+        impressions,
+        friends,
+    } = user;
+
+    return (
+        <WidgetWrapper>
+
+            <FlexBetween
+            gap="0.5rem"
+            pb="1.1rem"
+            onClick={() => Navigate(`/profile/${userId}`)}
+            >
+                <FlexBetween gap= "1rem">
+                    <UserImage image={picturePath} />
+                    <Box>
+                        <Typography
+                        variant="h4"
+                        color={dark}
+                        fontWeight="500"
+                        sx={{
+                            "&:hover":{
+                                color: palette.primary.light,
+                                cursor: "pointer"
+                            }
+                        }}>{firstName} {lastName}</Typography>
+                        <Typography color={medium}>{friends.length} friends</Typography>
+                    </Box>
+                </FlexBetween>
+                <Divider />
+
+                <Box p="1rem 0">
+                    <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
+                        <LocationOnOutlined fontSize="large" sx={{ color:main}} />
+                        <Typography color={medium} >{location}</Typography>
+                    </Box>
+                </Box>
+
+                <Box p="1rem">
+                    <FlexBetween mb="0.5rem"></FlexBetween>
+                </Box>
+            </FlexBetween>
+        </WidgetWrapper>
+    )
 }
