@@ -6,7 +6,7 @@ function JobCard(props){
         <div style={{ position: "relative", width: "30%", height: "100%" }}>
         <button
             onClick={() => {
-                props.setModal1Set1(false)
+               
                 props.setModal1Title1("")
                 props.setModal1Description1("")
 
@@ -49,8 +49,8 @@ function JobCard(props){
 
         </button>
         <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width: "100%", height: "100%", overflowY: "auto" }}>
-            <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{props.modal1Title1}</h6>
-            <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{props.postedDate1}</p>
+            <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{props.modalTitle}</h6>
+            <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{props.postedDate}</p>
         </div>
     </div>
     )

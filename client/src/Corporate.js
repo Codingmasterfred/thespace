@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
+import { v4 as uuidv4 } from 'uuid';
 import Form from "react-bootstrap/Form"
 import axios from "axios"
 import { toast } from 'react-toastify'; // Import toast
@@ -25,9 +26,20 @@ function Corporate() {
     const [warnedAboutPortfolioLinks, setWarnedAboutPortfolioLinks] = useState(false)
     const [warnedAboutPortfolio, setwarnedAboutPortfolio] = useState(false)
 
-    const [jobListings, setJobListings] = useState([]);
+    const [jobListings, setJobListings] = useState([
+    { title: "", description: "", deleted: false, created:false, postedDate:null,id:uuidv4()},
+    { title: "", description: "", deleted: false, created:false, postedDate:null,id:uuidv4()},
+    { title: "", description: "", deleted: false, created:false, postedDate:null,id:uuidv4()},
+    { title: "", description: "", deleted: false, created:false, postedDate:null,id:uuidv4()},
+    { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()},
+    { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()},
+    { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()},
+    { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()},
+    { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()}]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [endIndex,setEndIndex] = useState(3)
     const [show, setShow] = useState(false);
+    const [groupedBy3,setGroupBy3] = useState(0)
 
     const [show1, setShow1] = useState(false);
     const [modal1Set1, setModal1Set1] = useState(false)
@@ -48,12 +60,14 @@ function Corporate() {
     const [modal1Description3, setModal1Description3] = useState("")
     const [postedDate3, setPostedDate3] = useState("")
     const [showNextArrow, setShowNextArrow] = useState(false)
+    const [showPreviousArrow,setShowPreviousArrow] = useState(false)
     const [mapNow, startMapping] = useState(false)
     const [notloop, setnotloop] = useState(2)
 
-
+    const [updateThisVar,setUpdateThisVar] = useState({})
     const [modalTitle, setModalTitle] = useState("")
     const [modalDescription, setModalDescription] = useState("")
+    const [postedDate, setPostedDate] = useState("")
 
     if (notloop > 0) {
         if (modal1Set1 & modal1Set2 & modal1Set3) {
@@ -140,24 +154,48 @@ function Corporate() {
         const formattedDate = currentDate.toLocaleString();
         setPostedDate1(formattedDate)
         setModal1Set1(true)
-        setJobListings([...jobListings, { title: modal1Title1, description: modal1Description1, postedTime: postedDate1 }])
+
+        // setJobListings([...jobListings, { title: modal1Title1, description: modal1Description1, postedTime: formattedDate, deleted: false, created:true}])
         handleClose1()
     }
 
-    function SubmitJobListing() {
-
+    const SubmitJobListing = (SaveListing) => {
+        console.log("we in ");
         if (modalTitle === "" || modalDescription === "") {
-            handleClose1()
-            return
+            handleClose();
+            return;
         }
         const currentDate = new Date();
         const formattedDate = currentDate.toLocaleString();
-        setPostedDate1(formattedDate)
-        setModal1Set1(true)
+        setPostedDate(formattedDate);
+    
+        // Use map to create a new array with the updated created property
+        const updatedJobListings = jobListings.map((listing) => {
+            if (listing.id === SaveListing.id) {
+                console.log("Compare",listing.id === SaveListing.id)
+                return {
+                    ...listing,
+                    title:modalTitle,
+                    description:modalDescription,
+                    postedDate:formattedDate,
+                    created: true,
+                    
+                };
+            }
+            return listing; // Return other listings unchanged
+        });
         
-        setJobListings([...jobListings, { title: modalTitle, description: modalDescription, postedTime: postedDate1 }])
-        handleClose1()
-    }
+
+        console.log(updatedJobListings);
+        setJobListings(updatedJobListings);
+        console.log("groupedBy3",groupedBy3)
+      if(groupedBy3 === 3 ){
+        console.log("still good")
+        setShowNextArrow(true)
+      }
+        handleClose();
+    };
+    // && listing.created === true && listing.deleted === false
 
     const handleClose2 = () => {
         setShow2(false)
@@ -334,7 +372,7 @@ function Corporate() {
 
         try {
             axios
-                .post("https://localhost:7260/freelancer", {
+                .post("https://localhost:7260/Corporate", {
                     profilepicture: picfile,
                     name: Name,
                     password: Password,
@@ -342,7 +380,7 @@ function Corporate() {
                     phonenumber: PhoneNumber,
                     city: City,
                     state: State,
-                    portfolio: ListOfPortfolioFiles,
+                    // JobListing: Job,
                     pitch: Pitch,
                     link: LinkArray,
                 })
@@ -410,7 +448,21 @@ function Corporate() {
                     SubmitJobListing={SubmitJobListing}
                     setJobListings={setJobListings}
                     modalTitle={modalTitle}
+                    modal1Title1={modal1Title1}
+                    modal1Description1={modal1Description1}
                     modalDescription={modalDescription}
+                    setUpdateThisVar={setUpdateThisVar}
+                    updateThisVar={updateThisVar}
+                    postedDate={postedDate}
+                    setCurrentIndex={setCurrentIndex}
+                    currentIndex={currentIndex}
+                    setEndIndex={setEndIndex}
+                    endIndex={endIndex}
+                    setShowNextArrow={setShowNextArrow}
+                    showNextArrow={showNextArrow}
+                    setGroupBy3={setGroupBy3}
+                    groupedBy3={groupedBy3}
+
                      />
 
                     

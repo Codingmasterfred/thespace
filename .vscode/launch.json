@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/client"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
@@ -16,6 +23,7 @@
                 "MONGODB_URI":"mongodb://DemoUser:spacinouT@thespacedemo.8hz6xoa.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp",
                 "PORT": "3001"
             }
-        }
+        },
+        
     ]
 }
