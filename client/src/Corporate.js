@@ -36,64 +36,26 @@ function Corporate() {
     { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()},
     { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()},
     { title: "", description: "",deleted: false, created:false , postedDate:null ,id:uuidv4()}]);
+
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [endIndex,setEndIndex] = useState(3)
-    const [show, setShow] = useState(false);
-    const [groupedBy3,setGroupBy3] = useState(0)
-
-    const [show1, setShow1] = useState(false);
-    const [modal1Set1, setModal1Set1] = useState(false)
-    const [modal1Title1, setModal1Title1] = useState("")
-
-    const [modal1Description1, setModal1Description1] = useState("")
-    const [postedDate1, setPostedDate1] = useState("")
-
-    const [show2, setShow2] = useState(false);
-    const [modal1Set2, setModal1Set2] = useState(false)
-    const [modal1Title2, setModal1Title2] = useState("")
-    const [modal1Description2, setModal1Description2] = useState("")
-    const [postedDate2, setPostedDate2] = useState("")
-
-    const [show3, setShow3] = useState(false);
-    const [modal1Set3, setModal1Set3] = useState(false)
-    const [modal1Title3, setModal1Title3] = useState("")
-    const [modal1Description3, setModal1Description3] = useState("")
-    const [postedDate3, setPostedDate3] = useState("")
+    
     const [showNextArrow, setShowNextArrow] = useState(false)
     const [showPreviousArrow,setShowPreviousArrow] = useState(false)
-    const [mapNow, startMapping] = useState(false)
-    const [notloop, setnotloop] = useState(2)
 
-    const [updateThisVar,setUpdateThisVar] = useState({})
+    const [show, setShow] = useState(false);
     const [modalTitle, setModalTitle] = useState("")
     const [modalDescription, setModalDescription] = useState("")
     const [postedDate, setPostedDate] = useState("")
 
-    if (notloop > 0) {
-        if (modal1Set1 & modal1Set2 & modal1Set3) {
-            startMapping(true)
-            setShow1(false);
-            setModal1Set1(false);
-            setModal1Title1("");
-            setModal1Description1("");
-            setPostedDate1("");
 
-            setShow2(false);
-            setModal1Set2(false);
-            setModal1Title2("");
-            setModal1Description2("");
-            setPostedDate2("");
+    const [updateThisVar,setUpdateThisVar] = useState({})
+    const [seeAllModal, setSeeAllModal] = useState(false)
 
-            setShow3(false);
-            setModal1Set3(false);
-            setModal1Title3("");
-            setModal1Description3("");
-            setPostedDate3("");
+    const [editSubmit,setEditSubmit] = useState(false)
 
-            setnotloop(0)
-        }
 
-    }
 
     let FetchLocationIQData = async () => {
         try {
@@ -105,7 +67,7 @@ function Corporate() {
                 console.log(response.data[0].display_name.split(",")[4]);
 
                 if (response.data[0].display_name.split(",")[4].trim() !== "USA") {
-                    console.log("NOT USA");
+                  
                     setCancelRequest(true);
                     toast.error("This location is not in the USA.", {
                         position: toast.POSITION.TOP_RIGHT,
@@ -113,51 +75,39 @@ function Corporate() {
                     });
                     return;
                 }
-            } else {
-                console.log("Unexpected data structure:", response.data[0].display_name);
-            }
+            } 
 
             console.log("LocationIQ", response);
         } catch (error) {
-            console.log("locationIQ error", error);
+            console.error("locationIQ error", error);
         }
     };
 
 
     const handleNext = () => {
-        if (currentIndex + 3 < jobListings.length) {
+      
             setCurrentIndex(currentIndex + 3);
-        }
+            setEndIndex(endIndex + 3)
+        
     };
 
     const handlePrevious = () => {
-        if (currentIndex - 3 >= 0) {
-            setCurrentIndex(currentIndex - 3);
-        }
+        
+        setCurrentIndex(currentIndex - 3);
+        setEndIndex(endIndex - 3)
+        
     };
-
-    const handleClose1 = () => {
-        setShow1(false)
-    }
-
+    
+    
+    
     const handleClose = () => {
         setShow(false)
     }
-    const handleShow1 = () => setShow1(true);
+    
+    
+    const handleShow = () => setShow(true);
 
-    function SubmitJobListing1() {
-        if (modal1Title1 === "" || modal1Description1 === "") {
-            handleClose1()
-            return
-        }
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleString();
-        setPostedDate1(formattedDate)
-        setModal1Set1(true)
-
-        // setJobListings([...jobListings, { title: modal1Title1, description: modal1Description1, postedTime: formattedDate, deleted: false, created:true}])
-        handleClose1()
-    }
+  
 
     const SubmitJobListing = (SaveListing) => {
         console.log("we in ");
@@ -172,77 +122,32 @@ function Corporate() {
         // Use map to create a new array with the updated created property
         const updatedJobListings = jobListings.map((listing) => {
             if (listing.id === SaveListing.id) {
-                console.log("Compare",listing.id === SaveListing.id)
+               
                 return {
                     ...listing,
                     title:modalTitle,
                     description:modalDescription,
                     postedDate:formattedDate,
                     created: true,
+                    deleted:false
                     
                 };
             }
             return listing; // Return other listings unchanged
         });
         
-
+        
+        
         console.log(updatedJobListings);
         setJobListings(updatedJobListings);
-        console.log("groupedBy3",groupedBy3)
-      if(groupedBy3 === 3 ){
-        console.log("still good")
-        setShowNextArrow(true)
-      }
+        
+        // setUpdateThisVar({})
+        setModalDescription("")
+        setModalTitle("")
+   
         handleClose();
     };
-    // && listing.created === true && listing.deleted === false
-
-    const handleClose2 = () => {
-        setShow2(false)
-    }
-    const handleShow2 = () => setShow2(true);
-
-    const handleShow = () => setShow(true);
-
-    function SubmitJobListing2() {
-        if (modal1Title2 === "" || modal1Description2 === "") {
-            handleClose2()
-            return
-        }
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleString();
-        setPostedDate2(formattedDate)
-        setModal1Set2(true)
-        setJobListings([...jobListings, { title: modal1Title2, description: modal1Description2, postedTime: postedDate2 }])
-        handleClose2()
-    }
-
-    const handleClose3 = () => {
-        setShow3(false)
-    }
-    const handleShow3 = () => setShow3(true);
-
-    function SubmitJobListing3() {
-        if (modal1Title3 === "" || modal1Description3 === "") {
-            handleClose3()
-            return
-        }
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleString();
-        setPostedDate3(formattedDate)
-        setModal1Set3(true)
-        setJobListings([...jobListings, { title: modal1Title3, description: modal1Description3, postedTime: formattedDate }])
-        handleClose3()
-    }
-
-
-
-
-
-
-
-
-
+ 
 
     const handleFileChangePicFile = (e) => {
         // Handle the selected file
@@ -276,9 +181,9 @@ function Corporate() {
             return;
         }
 
-        console.log(
-            `profilepicture: ${picfile}, name: ${Name}, password: ${Password}, email: ${Email}, phonenumber: ${PhoneNumber}, city: ${City}, state: ${State}, portfolio: ${ListOfPortfolioFiles}, pitch: ${Pitch}, Link: ${LinkArray}`
-        );
+        // console.log(
+        //     `profilepicture: ${picfile}, name: ${Name}, password: ${Password}, email: ${Email}, phonenumber: ${PhoneNumber}, city: ${City}, state: ${State}, portfolio: ${ListOfPortfolioFiles}, pitch: ${Pitch}, Link: ${LinkArray}`
+        // );
         if (!picfile) {
             toast.error("Must Select Profile Picture. Your profile picture helps employers recognize you and make a positive impression.", {
                 position: toast.POSITION.TOP_RIGHT,
@@ -364,7 +269,7 @@ function Corporate() {
             setWarnedAboutPortfolioLinks(true);
             return;
         }
-        console.log(ListOfPortfolioFiles)
+        // console.log(ListOfPortfolioFiles)
         toast.success("Profile Created Successfully", {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000, // Automatically close after 5 seconds
@@ -415,41 +320,14 @@ function Corporate() {
 
                 <ModalShow 
                     jobListings={jobListings}
-                    mapNow={mapNow}
-                    setModal1Set1={setModal1Set1}
-                    setModal1Title1={setModal1Title1}
                     setModalTitle={setModalTitle}
                     setModalDescription={setModalDescription}
-                    setModal1Description1={setModal1Description1}
-                    setModal1Set2={setModal1Set2}
-                    setModal1Title2={setModal1Title2}
-                    setModal1Description2={setModal1Description2}
-                    setModal1Set3={setModal1Set3}
-                    setModal1Title3={setModal1Title3}
-                    setModal1Description3={setModal1Description3}
-                    show1={show1}
-                    show2={show2}
-                    show3={show3}
                     handleShow={handleShow}
                     show={show}
-                    handleShow1={handleShow1}
-                    handleShow2={handleShow2}
-                    handleShow3={handleShow3}
                     handleClose={handleClose}
-                    handleClose1={handleClose1}
-                    handleClose2={handleClose2}
-                    handleClose3={handleClose3}
-                    postedDate1={postedDate1}
-                    postedDate2={postedDate2}
-                    postedDate3={postedDate3}
-                    SubmitJobListing1={SubmitJobListing1}
-                    SubmitJobListing2={SubmitJobListing2}
-                    SubmitJobListing3={SubmitJobListing3}
                     SubmitJobListing={SubmitJobListing}
                     setJobListings={setJobListings}
                     modalTitle={modalTitle}
-                    modal1Title1={modal1Title1}
-                    modal1Description1={modal1Description1}
                     modalDescription={modalDescription}
                     setUpdateThisVar={setUpdateThisVar}
                     updateThisVar={updateThisVar}
@@ -460,9 +338,12 @@ function Corporate() {
                     endIndex={endIndex}
                     setShowNextArrow={setShowNextArrow}
                     showNextArrow={showNextArrow}
-                    setGroupBy3={setGroupBy3}
-                    groupedBy3={groupedBy3}
-
+                    handleNext={handleNext}
+                    handlePrevious={handlePrevious}
+                    showPreviousArrow={showPreviousArrow}
+                    setShowPreviousArrow={setShowPreviousArrow}
+                    seeAllModal={seeAllModal}
+                    setSeeAllModal={setSeeAllModal}
                      />
 
                     

@@ -51,7 +51,7 @@ function UserProfileComponent() {
             
             console.log("LocationIQ", response);
         } catch (error) {
-            console.log("Catch")
+            
             setCancelRequest(true);
             toast.error("Enter Valid Location.", {
                 position: toast.POSITION.TOP_RIGHT,
@@ -61,7 +61,7 @@ function UserProfileComponent() {
             return
         }
     };
-    console.log("LinkArray",LinkArray)
+    // console.log("LinkArray",LinkArray)
 
     const handleFileChange = (e) => {
         // Handle the selected file
@@ -71,7 +71,7 @@ function UserProfileComponent() {
             if (selectedFile.type === 'application/pdf') {
                 // Handle the PDF file
                 const fileURL = URL.createObjectURL(selectedFile);
-                console.log(fileURL);
+                // console.log(fileURL);
                 setFile(fileURL);
                 setListOfPortfolioFiles((prevFiles) => [...prevFiles, fileURL]);
             } else {
@@ -95,7 +95,7 @@ function UserProfileComponent() {
                 // Handle the PDF file
                 const fileURL = URL.createObjectURL(selectedFile);
 
-                console.log(fileURL)
+                // console.log(fileURL)
                 setFile2(fileURL)
                 setListOfPortfolioFiles((prevFiles) => [...prevFiles, fileURL])
             } else {
@@ -118,7 +118,7 @@ function UserProfileComponent() {
             if (selectedFile.type === 'application/pdf') {
                 // Handle the PDF file
                 const fileURL = URL.createObjectURL(selectedFile);
-                console.log(fileURL)
+                // console.log(fileURL)
                 setFile3(fileURL)
                 setListOfPortfolioFiles((prevFiles) => [...prevFiles, fileURL])
             } else {

@@ -16,9 +16,9 @@ function AddJobModal(props){
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="text"
-                       
+                       value={props.modalTitle}
                         onChange={(e) => { props.setModalTitle(e.target.value) }}
-                        placeholder="Job Title"
+                       
                         autoFocus
                     />
                 </Form.Group>
@@ -28,7 +28,8 @@ function AddJobModal(props){
                 >
                     <Form.Label>Job Description</Form.Label>
                     <Form.Control
-                        placeholder="Job Description"
+                        type="text"
+                         value={props.modalDescription}
             
                         onChange={(e) => { props.setModalDescription(e.target.value) }}
                         as="textarea"
