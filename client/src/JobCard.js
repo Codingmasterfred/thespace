@@ -3,7 +3,7 @@ import React from "react"
 function JobCard(props) {
     // console.log(props)
     return (
-        <div style={{ position: "relative", width: "30%", height: "80%" }}>
+        <div style={{ position: "relative", width: "28%", height: "70%", display: "flex", alignItems: "center", justifyContent: "center", padding:"0"  }}>
 
             <button
                 onClick={() => {
@@ -46,14 +46,16 @@ function JobCard(props) {
             <button
 
                 onClick={() => {
-                   
+                    
                     props.jobListings.map(listings => {
                         if (listings.id === props.listing.id) {
+                            props.setUpdateThisVar(listings)
                             console.log(listings.id ,props.listing.id)
                            
                                 console.log("dkldlqdql")
                                 props.setModalTitle(listings.title)
                                 props.setModalDescription(listings.description)
+                               
                                 props.handleShow()
 
                            

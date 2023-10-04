@@ -17,6 +17,9 @@ function ModalShow(props) {
     // console.log(props.currentIndex, "currentIndex", props.endIndex, "endIndex")
     var jobListingsHTML = listings.map((listing, index) => {
         // console.log(listing.created)
+        // if(){
+
+        // }
 
         if (!listing.created === true || listing.created === true && listing.deleted === true || !listing.deleted === false) {
             // console.log("here")
@@ -39,11 +42,17 @@ function ModalShow(props) {
 
         }
         else if (listing.created === true && index === 0) {
-            // console.log("index 0")
+            console.log("index 0")
+           
+
+            
             
             return (
                 <JobCard
-                onCLick={ props.setUpdateThisVar(listing) }
+              
+
+                     
+              
                 setUpdateThisVar={props.setUpdateThisVar}
                     updateThisVar={props.updateThisVar}
                     jobListings={props.jobListings}
@@ -62,18 +71,21 @@ function ModalShow(props) {
         }
         else if (listing.created === true && index === 1) {
             // console.log("index1")
+          
 
             return (
                 <JobCard
-                updateThisVar={props.updateThisVar}
-                jobListings={props.jobListings}
-                listing={listing}
-                modalTitle={props.setModalTitle}
-                postedDate={props.postedDate}
-                handleShow={props.handleShow}
-                setModalDescription={props.setModalDescription}
-                setModalTitle={props.setModalTitle}
-                setJobListings={props.setJobListings}
+               
+                setUpdateThisVar={props.setUpdateThisVar}
+                    updateThisVar={props.updateThisVar}
+                    jobListings={props.jobListings}
+                    listing={listing}
+                    modalTitle={props.setModalTitle}
+                    postedDate={props.postedDate}
+                    handleShow={props.handleShow}
+                    setModalDescription={props.setModalDescription}
+                    setModalTitle={props.setModalTitle}
+                    setJobListings={props.setJobListings}
                 />
                 )
             }
@@ -83,16 +95,17 @@ function ModalShow(props) {
                 <>
 
                 <JobCard
-                updateThisVar={props.updateThisVar}
-                    jobListings={props.jobListings}
-                    listing={listing}
-                    modalTitle={props.setModalTitle}
-                    postedDate={props.postedDate}
-                    handleShow={props.handleShow}
-                    setModalDescription={props.setModalDescription}
-                    setModalTitle={props.setModalTitle}
-                    setJobListings={props.setJobListings}
-                
+              
+              setUpdateThisVar={props.setUpdateThisVar}
+              updateThisVar={props.updateThisVar}
+              jobListings={props.jobListings}
+              listing={listing}
+              modalTitle={props.setModalTitle}
+              postedDate={props.postedDate}
+              handleShow={props.handleShow}
+              setModalDescription={props.setModalDescription}
+              setModalTitle={props.setModalTitle}
+              setJobListings={props.setJobListings}
                 />
                 </>
                 )

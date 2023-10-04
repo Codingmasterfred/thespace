@@ -102,6 +102,7 @@ function Corporate() {
     
     const handleClose = () => {
         setShow(false)
+        setUpdateThisVar({})
     }
     
     
