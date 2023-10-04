@@ -78,11 +78,54 @@ const UserWidget =({ userId, picturePath }) => {
                         <Typography color={medium} >{location}</Typography>
                     </Box>
                 </Box>
-
+                        
                 <Box p="1rem">
-                    <FlexBetween mb="0.5rem"></FlexBetween>
+                     <FlexBetween mb="0.5rem">
+                        <Typography color={medium}>Who's viewed your profile?</Typography>
+                        <Typography color={main} fontWeight="500">{viewedProfile}</Typography>
+                     </FlexBetween>
+                     <FlexBetween>
+                        <Typography color={medium}>Post Impressions</Typography>
+                        <Typography color={main} fontWeight="500">{impressions}</Typography>
+                     </FlexBetween>
                 </Box>
+
+                        <Divider />
+                <Box p="1rem 0">
+                    <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
+                        Social Profiles
+                    </Typography>
+                    <FlexBetween gap="1rem" mb="0.5rem">
+                        <FlexBetween gap="1rem">
+                            <img src="JaysApp\public\assets\logo-black.png" alt="X Icon" />
+                            <Box>
+                                <Typography color={main} fontWeight="500">
+                                    X
+                                </Typography>
+                                <Typography color={medium}>Network</Typography>
+                            </Box>
+                        </FlexBetween>
+                    </FlexBetween>
+                    <EditOutlined sx={{color: main}} />
+                        
+                        <Divider />
+                    <FlexBetween gap="1rem" mb="0.5rem">
+                        <FlexBetween gap="1rem">
+                            <img src="JaysApp\public\assets\LI-In-Bug.png" alt="LinkedIn" />
+                            <Box>
+                                <Typography color={main} fontWeight="500">
+                                   LinkedIn
+                                </Typography>
+                                <Typography color={medium}>Network</Typography>
+                            </Box>
+                        </FlexBetween>
+                    </FlexBetween>
+                    <EditOutlined sx={{color: main}} />
+                </Box> 
+
             </FlexBetween>
         </WidgetWrapper>
     )
 }
+
+export default UserWidget;
