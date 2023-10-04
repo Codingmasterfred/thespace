@@ -18,15 +18,16 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads');
+const storage = multer.diskStorage({   //Creating a set of instructions that tells a program how to save files when they are uploaded
+    destination: function (req, file, cb) {  // Define the destination folder for storing uploaded files.
+        cb(null, 'uploads');  // 'uploads' is the folder where files will be saved.
     },
-    filename:function(req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
+    filename:function(req, file, cb) {  // Define the filename for the uploaded file
+        cb(null, Date.now() + '-' + file.originalname); // Generate a unique filename using the current timestamp and the original filename
     },
 });
 
+// Create a Multer middleware instance called 'upload' with the specified 'storage' configuration.
 const upload = multer({storage});
 
 // Middleware to connect to MongoDB
@@ -49,16 +50,19 @@ app.get('/test', (req, res) => {
     res.send('This means that it works :)');
 });
 
+// Define a route to handle user registration while extracting user registration data from the body. 
 app.post('/auth/register', upload.single('picture'), (req, res) => {
     try {
         const {firstName, lastName, email, password, location, occupation} = req.body;
 
+// Respond with a success message if registration succeeds and a error message handler if registration fails.
         res.json({success: true, message: 'User registered successfully'});
     } catch (error) {
         res.status(500).json({ success: false, message: 'Registration failed'});
     }
 });
 
+// Define a route to handle user login while extracting user login data. Respond with a success message with a successful login and respond with a 401 message if login fails.
 app.post('/auth/login', (req, res) => {
     try {
         const {email, password} = req.body;
