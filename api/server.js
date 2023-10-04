@@ -86,7 +86,11 @@ app.put("/joblistings", async (req, res) => {
 })
 
 app.delete("/joblistings", async (req, res) => {
-  
+
+  const jobID = req.body._id
+
+  const deletedJob = await Jobs.findByIdAndDelete(jobID)
+  res.send(deletedJob)
 })
 //<------------The end of Daron making routes------------------>
 
