@@ -316,7 +316,7 @@ function Corporate() {
                 {/* <h1 id="profileH1">Profile</h1> */}
                 <div id="SnapShotAndResumeContainer">
 
-                    <h4 id="PortfolioH4">Jobs Listing </h4>
+                    {/* <h4 id="PortfolioH4">Jobs Listing </h4> */}
 
 
                 <ModalShow 
@@ -373,7 +373,7 @@ function Corporate() {
                         <Button type="submit" id="ResumeSubmitButton" onClick={PostRequest}>Create Profile</Button>
                     </div>
                 </div>
-                <div id="ProfileContainer">
+                <div id="ProfileContainer"style={{}}>
                     <h4>Profile Info</h4>
                     <div id="ProfileContentContainer" style={{ padding: picfile ? "0px" : "20px" }}>
 
@@ -399,12 +399,12 @@ function Corporate() {
                                     <input type="file" id="fileInput" className="file-input" onChange={handleFileChangePicFile} />
                                 </label></div>}
 
-                        <input onChange={(e) => { setName(e.target.value) }} placeholder="Company" required />
-                        <input onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" type="password" required />
-                        <input onChange={(e) => { setCity(e.target.value) }} placeholder="City" required value={City} />
-                        <input onChange={(e) => { setState(e.target.value) }} placeholder="State" required value={State} />
-                        <input onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="Email" required />
-                        <input onChange={(e) => { setPhoneNumber(e.target.value) }} placeholder="Phone Number" required />
+                        <input style={{width:"90%"}}  onChange={(e) => { setName(e.target.value) }} placeholder="Company" required />
+                        <input style={{width:"90%"}} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" type="password" required />
+                        <input style={{width:"90%"}} onChange={(e) => { setCity(e.target.value) }} placeholder="City" required value={City} />
+                        <input style={{width:"90%"}} onChange={(e) => { setState(e.target.value) }} placeholder="State" required value={State} />
+                        <input style={{width:"90%"}} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="Email" required />
+                        <input style={{width:"90%"}} onChange={(e) => { setPhoneNumber(e.target.value) }} placeholder="Phone Number" required />
 
                     </div>
                 </div>

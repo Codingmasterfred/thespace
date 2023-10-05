@@ -3,7 +3,7 @@ import React from "react"
 function JobCard(props) {
     // console.log(props)
     return (
-        <div style={{ position: "relative", width: "28%", height: "70%", display: "flex", alignItems: "center", justifyContent: "center", padding:"0"  }}>
+        <div style={{ position: "relative", minWidth: "181.229", minHeight: "92.385", display: "flex", alignItems: "center", justifyContent: "center", padding:"10px"  }}>
 
             <button
                 onClick={() => {
@@ -72,7 +72,7 @@ function JobCard(props) {
                 style={{
                     alignSelf: "center",
                     position: "absolute",
-                    bottom: 27, // Adjust top position as needed
+                    bottom: 39, // Adjust top position as needed
                     left: 0, // Adjust right position as needed
                     zIndex: 1, // Ensure the button is on top of the iframe
                     backgroundColor: "white", // Set button background color
@@ -84,7 +84,7 @@ function JobCard(props) {
                 <i class="bi bi-pen"></i>
 
             </button>
-            <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width: "100%", height: "100%", overflowY: "auto" }}>
+            <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", minWidth: "181.229px", minHeight: "92.385px", overflowY: "auto", border:"none" }}>
                 <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{props.listing.title}</h6>
                 <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{props.listing.postedDate}</p>
             </div>
