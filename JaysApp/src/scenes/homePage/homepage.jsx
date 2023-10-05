@@ -1,3 +1,4 @@
+Dev
 import { Box, useMediaQuery } from "@mui/material";
 import {useSelector} from "react-redux";
 import Navbar from "../navbar/navbar";
@@ -27,6 +28,14 @@ const HomePage = () => {
             {isNonMobileScreens && (
                 {}
             )}
+
+import { Box } from "@mui/material";
+import Navbar from "../navbar/navbar";
+
+const HomePage = () => {
+    return(<Box>
+        <Navbar />
+master
     </Box>)
 }
 
