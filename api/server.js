@@ -95,7 +95,8 @@ app.delete("/joblistings", async (req, res) => {
   res.send(deletedJob)
 })
 
-//===================
+//  <================Freelance Routes==================>
+
 app.post("/freelancetalent", async (req, res) => {
 
   // Establishing a connection with MongoDb
