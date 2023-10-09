@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory} from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
+import logo from '../public/assets/TheSpaceLogo';
 
 
 function LandingPage() {
     const [isLoginFormVisible, setLoginFormVisible] = useState(true);
-    const [isSignUpFormVisible, setSignUpFormVisibile] = useState(false);
+    const [isSignUpFormVisible, setSignUpFormVisible] = useState(false);
 
     const handleLoginClick = () => {
         setLoginFormVisible(true);
@@ -18,11 +20,21 @@ function LandingPage() {
         setLoginFormVisible(false);
     }
 
+    const handleSignUp = (formData) => {
+        // Handle the signup logic here (e.g., API calls, state management).
+        // Redirect based on user_type.
+        if (formData.user_type === 'Leadership') {
+          history.push('/CreatecorporateProfileComponent');
+        } else if (formData.user_type === 'Freelancer') {
+          history.push('/CreatefreelancerProfileComponent');
+        }
+      };
+
     return (
-        <Container LandingPage>
+        <Container>
             <Row>
                 <Col>
-                    <img src="https://picsum.photos/200/300" alt="Company Logo" />
+                    <img src={logo} alt="The Space Logo" />
                 </Col>
             </Row>
             <Row>
@@ -36,7 +48,7 @@ function LandingPage() {
             <Row>
                 <Col>
                 {isLoginFormVisible && <LoginForm/>}
-                {isSignUpFormVisible && <SignUpForm />}
+                {isSignUpFormVisible && <SignUpForm onSignUp={handleSignUp}/>}
                 </Col>
             </Row>
 
