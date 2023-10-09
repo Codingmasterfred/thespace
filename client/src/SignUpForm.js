@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-function SignUpForm() {
+function SignUpForm({ onSignUp }) {
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -23,9 +23,9 @@ function SignUpForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add your signup logic here (e.g., API calls, state management).
-        // For now, let's just display the form data.
-        alert('Signup form data: ' + JSON.stringify(formData));
+        // call the onSignUp callback with the form data
+        onSignUp(formData);
+
     };
 
     return (

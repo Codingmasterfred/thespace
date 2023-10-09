@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory} from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
@@ -18,11 +19,21 @@ function LandingPage() {
         setLoginFormVisible(false);
     }
 
+    const handleSignUp = (formData) => {
+        // Handle the signup logic here (e.g., API calls, state management).
+        // Redirect based on user_type.
+        if (formData.user_type === 'Leadership') {
+          history.push('/CreatecorporateProfileComponent');
+        } else if (formData.user_type === 'Freelancer') {
+          history.push('/CreatefreelancerProfileComponent');
+        }
+      };
+
     return (
-        <Container LandingPage>
+        <Container>
             <Row>
                 <Col>
-                    <img src="https://picsum.photos/200/300" alt="Company Logo" />
+                    <img src={logo} alt="Company Logo" />
                 </Col>
             </Row>
             <Row>

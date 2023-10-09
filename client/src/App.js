@@ -17,6 +17,7 @@ function App() {
         <Route path="/" element={<HomeComponent />} />
         <Route path="/freelancerProfile" element={<CreatefreelancerProfileComponent />} />
         <Route path="/corporateProfile" element={<CreatecorporateProfileComponent />} />
+        <Route path="/signup" element={<SignUpFormComponent />} />
         {/* Add more routes as needed */}
       </Routes>
     </Router>
