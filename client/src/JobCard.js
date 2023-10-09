@@ -2,8 +2,21 @@ import React from "react"
 
 function JobCard(props) {
     // console.log(props)
+    let date = props.listing.postedDate.split(",")[1] 
+    console.log(date)
     return (
-        <div style={{ position: "relative", minWidth: "181.229", minHeight: "92.385", display: "flex", alignItems: "center", justifyContent: "center", padding:"10px"  }}>
+        <div style={{ position: "relative",  width: props.isSmallComputerScreen && !props.isForPhone
+        ? "30%" // When it's a small computer screen
+        : props.isForPhone
+        ? "70%" // When it's for a phone
+        : !props.isForPhone && !props.isSmallComputerScreen
+        ? "181.229px" // When none of the conditions match
+        : "auto",
+        height: props.isSmallComputerScreen && !props.isForPhone
+      ? "137px"
+      : props.isForPhone && props.isSmallComputerScreen
+      ? "100%"
+      : "122.385px", display: "flex", alignItems: "center", justifyContent: "center", padding:"15px"  }}>
 
             <button
                 onClick={() => {
@@ -84,9 +97,10 @@ function JobCard(props) {
                 <i class="bi bi-pen"></i>
 
             </button>
-            <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", minWidth: "181.229px", minHeight: "92.385px", overflowY: "auto", border:"none" }}>
-                <h6 style={{ height: "90%", maxWidth: "80%", overflow: "auto", textOverflow: "ellipsis" }}>{props.listing.title}</h6>
-                <p style={{ height: "10%", whiteSpace: "pre-wrap" }}>{props.listing.postedDate}</p>
+                
+            <div style={{ wordWrap: "break-word", whiteSpace: "pre-wrap", flexDirection: "column", width:!props.isSmallComputerScreen && props.isForPhone?"70%": "181.229px", height:props.isSmallComputerScreen && props.isForPhone?"200px": "92.385px", overflowY: "hidden", border:"none", }}>
+                <h6 style={{ height: "90%", maxWidth:props.isSmallComputerScreen && props.isForPhone?"95%" :"80%", overflow: "auto", textOverflow: "ellipsis" , fontSize:props.isSmallComputerScreen && props.isForPhone?"24px":"default" }}>{props.listing.title}</h6>
+                <p style={{ height:props.isSmallComputerScreen && props.isForPhone? "10":"10%", whiteSpace: "pre-wrap", fontSize:props.isSmallComputerScreen && props.isForPhone?"24px":"15px" }}>{props.isSmallComputerScreen?date:props.listing.postedDate}</p>
             </div>
         </div>
     )
