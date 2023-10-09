@@ -6,7 +6,7 @@ import SignUpForm from './SignUpForm';
 
 function LandingPage() {
     const [isLoginFormVisible, setLoginFormVisible] = useState(true);
-    const [isSignUpFormVisible, setSignUpFormVisibile] = useState(false);
+    const [isSignUpFormVisible, setSignUpFormVisible] = useState(false);
 
     const handleLoginClick = () => {
         setLoginFormVisible(true);
