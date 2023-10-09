@@ -3,6 +3,7 @@ import { useHistory} from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
+import logo from '../public/assets/TheSpaceLogo';
 
 
 function LandingPage() {
@@ -33,7 +34,7 @@ function LandingPage() {
         <Container>
             <Row>
                 <Col>
-                    <img src={logo} alt="Company Logo" />
+                    <img src={logo} alt="The Space Logo" />
                 </Col>
             </Row>
             <Row>
@@ -47,7 +48,7 @@ function LandingPage() {
             <Row>
                 <Col>
                 {isLoginFormVisible && <LoginForm/>}
-                {isSignUpFormVisible && <SignUpForm />}
+                {isSignUpFormVisible && <SignUpForm onSignUp={handleSignUp}/>}
                 </Col>
             </Row>
 
