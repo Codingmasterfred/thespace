@@ -11,7 +11,7 @@ import CreatecorporateProfileComponent from "./Corporate"
 function App() {
   return (
     <Router>
-      <NavBarComponent />
+      {/* <NavBarComponent /> */}
       <ToastContainer />
       <Routes>
         <Route path="/" element={<HomeComponent />} />
