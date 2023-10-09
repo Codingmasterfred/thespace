@@ -47,9 +47,9 @@ master
 a52a3fc4c04d414a8069cbab973b4f7f2cb92720
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node.js",
+     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -58,6 +58,7 @@ a52a3fc4c04d414a8069cbab973b4f7f2cb92720
       "react-app/jest"
     ]
   },
+  
   "browserslist": {
     "production": [
       ">0.2%",
