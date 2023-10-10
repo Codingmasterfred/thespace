@@ -56,7 +56,6 @@ function Corporate() {
 
 
     const [updateThisVar, setUpdateThisVar] = useState({})
-    const [seeAllModal, setSeeAllModal] = useState(false)
 
 
 
@@ -264,13 +263,13 @@ function Corporate() {
             return;
         }
 
-        if (!Password) {
-            toast.error("Password is required. A strong password helps protect your account from unauthorized access.", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-            });
-            return;
-        }
+        // if (!Password) {
+        //     toast.error("Password is required. A strong password helps protect your account from unauthorized access.", {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 5000,
+        //     });
+        //     return;
+        // }
 
         if (!Email) {
             toast.error("Email is required. Your email is used for communication and notifications from employers.", {
@@ -406,8 +405,8 @@ function Corporate() {
                         handlePrevious={handlePrevious}
                         showPreviousArrow={showPreviousArrow}
                         setShowPreviousArrow={setShowPreviousArrow}
-                        seeAllModal={seeAllModal}
-                        setSeeAllModal={setSeeAllModal}
+                        // seeAllModal={seeAllModal}
+                        // setSeeAllModal={setSeeAllModal}
                         isSmallComputerScreen={isSmallComputerScreen}
                         isForPhone={isForPhone}
                     />

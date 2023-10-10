@@ -138,9 +138,9 @@ function ModalShow(props) {
         props.setShowPreviousArrow(false)
     }
 
-    if (props.endIndex >= 3 && props.showNextArrow) {
-        props.setSeeAllModal(true)
-    }
+    // if (props.endIndex >= 3 && props.showNextArrow) {
+    //     props.setSeeAllModal(true)
+    // }
 
 
 
