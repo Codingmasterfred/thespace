@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import axios from "axios"
@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS
 import { v4 as uuidv4 } from 'uuid';
 import { useMediaQuery } from 'react-responsive';
+import { end } from "@popperjs/core";
 
 function UserProfileComponent() {
 
@@ -50,21 +51,27 @@ function UserProfileComponent() {
     const [endIndex, setEndIndex] = useState(null)
 
     // Use useEffect to conditionally initialize the state variable
+    const hasCodeRun = useRef(false);
     useEffect(() => {
-        if (isSmallComputerScreen) {
-            setEndIndex(2);
+        if (!hasCodeRun.current) {
+            if (isSmallComputerScreen) {
+                setEndIndex(2);
+            }
+            if (isForPhone) {
+                setEndIndex(1);
+            } else if (!isForPhone && !isSmallComputerScreen) {
+                // Initialize with a different value for other cases
+                setEndIndex(3);
+            }
+    
+            hasCodeRun.current = true; // Set the flag to true after running the code
         }
-        if (isForPhone) {
-            setEndIndex(1);
-        }
-        else if (!isForPhone && !isSmallComputerScreen) {
-            // Initialize with a different value for other cases
-            setEndIndex(3);
-        }
-        if (ListOfPortfolioFiles.slice(currentIndex, endIndex).every(obj => obj.created === true && obj.deleted === false)) {
+        if (ListOfPortfolioFiles.slice(currentIndex, endIndex).every(obj => obj.created === true && obj.deleted === false  )) {
+            console.log("success")
             setShowNextArrow(true);
         } else {
             setShowNextArrow(false);
+            
         }
 
         if (currentIndex > 0) {
@@ -76,22 +83,21 @@ function UserProfileComponent() {
         if (endIndex >= 3) {
             setShowNextArrow(false);
         }
-    }, [ListOfPortfolioFiles, currentIndex, endIndex]);
+    }, [ListOfPortfolioFiles,currentIndex,endIndex]);
 
 
     const handleNext = () => {
 
 
         if (isSmallComputerScreen && !isForPhone) {
-            setCurrentIndex(prevIndex => prevIndex + 1);
-        } else if (isForPhone && isSmallComputerScreen) {
+            console.log("tablet")
             setCurrentIndex(prevIndex => prevIndex + 2);
+        } else if (isForPhone && isSmallComputerScreen) {
+            console.log("iphone")
+            setCurrentIndex(prevIndex => prevIndex + 1);
         }
-        console.log('Before setEndIndex (next):', endIndex);
-        setEndIndex(prevIndex => prevIndex + 2);
-        console.log('Before setEndIndex (next):', endIndex);
-    };;
-
+        setEndIndex(prevIndex => prevIndex + 1);
+    };
     console.log(currentIndex, endIndex)
 
 
@@ -100,9 +106,9 @@ function UserProfileComponent() {
 
 const handlePrevious = () => {
 
-    if (isSmallComputerScreen) {
+    if (isSmallComputerScreen && !isForPhone) {
         setCurrentIndex(currentIndex - 2);
-    } else if (isForPhone) {
+    } else if (isForPhone && isSmallComputerScreen) {
         setCurrentIndex(currentIndex - 1);
     }
 
@@ -113,24 +119,8 @@ const handlePrevious = () => {
     }
 }
 
-// if (ListOfPortfolioFiles.slice(currentIndex,endIndex).every(obj =>obj.created === true && obj.deleted === false)) {
-//     setShowNextArrow(true)
 
-// }
-// else {
-//     setShowNextArrow(false)
-// }
 
-// if (currentIndex > 0) {
-//     setShowPreviousArrow(true)
-// }
-// else {
-//     setShowPreviousArrow(false)
-// }
-
-// if (endIndex >= 3 ) {
-//     setShowPreviousArrow(false)
-// }
 
 
 let FetchLocationIQData = async () => {
@@ -445,7 +435,7 @@ return (
 
                 <h4 id="PortfolioH4">Portfolio Snapshot</h4>
                 <div id="PortfolioSnapchot">
-                    {isSmallComputerScreen || isForPhone && (
+                    {isSmallComputerScreen  && (
                         <div style={{ width: "10%", border: "none" }}>
                             {showPreviousArrow &&
                                 <svg style={{}} onClick={handlePrevious} xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
@@ -454,9 +444,11 @@ return (
                             }
                         </div>
                     )
-                    }
+                }
                     {ListOfPortfolioFiles.slice(currentIndex, endIndex).map((Portfolio, index) => (
                         <div id="PortfolioItems" key={index}>
+                        
+                        
                             {(!Portfolio.deleted && Portfolio.created && Portfolio.file) ? (
                                 <div style={{ position: "relative", width: "100%", height: "120px" }}>
                                    { console.log("Here")}
@@ -484,11 +476,12 @@ return (
                                     >
                                         <i className="fas fa-trash-alt"></i>
                                     </button>
+                                  
                                 </div>
                             ) : (
 
                                 <label htmlFor={`fileInput${index}`} className="file-label">
-                                     { console.log("Here 2 ")}
+                                     { console.log("Here 2")}
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60%" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16">
                                         <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2Zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672Z" />
                                         <path d="M13.5 9a.5.5 0 0 1 .5.5V11h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V12h-1.5a.5.5 0 0 1 0-1H13V9.5a.5.5 0 0 1 .5-.5Z" />
