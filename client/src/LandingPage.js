@@ -24,9 +24,9 @@ function LandingPage() {
         // Handle the signup logic here (e.g., API calls, state management).
         // Redirect based on user_type.
         if (formData.user_type === 'Leadership') {
-          history.push('/CreatecorporateProfileComponent');
+          useHistory.push('/CreatecorporateProfileComponent');
         } else if (formData.user_type === 'Freelancer') {
-          history.push('/CreatefreelancerProfileComponent');
+          useHistory.push('/CreatefreelancerProfileComponent');
         }
       };
 
