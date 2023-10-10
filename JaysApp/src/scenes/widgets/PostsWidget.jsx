@@ -4,7 +4,7 @@ import { setPosts } from "../../state";
 import PostWidget from "./PostWidget";
 
 const PostsWidget  =({ userId, isProfile = false }) => {
-const dispach = useDispatch();
+const dispatch = useDispatch();
 const posts = useSelector((state) => state.posts);
 const token = useSelector((state) => state.token);
 
@@ -16,7 +16,7 @@ const getPosts = async () => {
 
     });
     const data = await response.json();
-    dispach(setPosts({ posts:data }))
+    dispatch(setPosts({ posts:data }))
 }
 
 // GET request for user-specific posts
@@ -27,7 +27,7 @@ const getUserPosts = async () => {
 
     });
     const data = await response.json();
-    dispach(setPosts({ posts:data }))
+    dispatch(setPosts({ posts:data }))
 };
 
 useEffect(() => {
