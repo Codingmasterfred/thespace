@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Paper, CircularProgress, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { themeSettings } from './Styling/theme';
+import { themeSettings } from './theme';
 
 const theme = createTheme(themeSettings('light'));
 

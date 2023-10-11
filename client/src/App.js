@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBarComponent from "./Navbar";
-import CreatefreelancerProfileComponent from "./Freelancer";
+import CreatefreelancerProfileComponent from "./components/Freelancer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS
