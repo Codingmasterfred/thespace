@@ -20,6 +20,7 @@ app.use(cors());
 // Middleware to connect to MongoDB
 //Using the next parameter lets us use different middleware,
 //without it our middleware would get stuck at the first one.
+
 app.use(async (req, res, next) => {
   try {
     req.mongoClient = await connectToMongoDB();
