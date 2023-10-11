@@ -2,7 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose'); // Import mongoose
-const UserProfile = require('../models/userProfileModel'); // Import your Mongoose model
+const UserProfile = require('../../models/userProfileModel'); // Import your Mongoose model
 
 const app = express();
 

@@ -2,7 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const CorporateUserProfile = require('../models/corporateUserProfileModel'); // Import your Mongoose model for corporate user profiles
+const CorporateUserProfile = require('../../models/corporateUserProfileModel'); // Import your Mongoose model for corporate user profiles
 
 const app = express();
 

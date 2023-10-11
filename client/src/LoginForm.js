@@ -16,9 +16,9 @@ function LoginForm() {
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter your email" />
             </Form.Group>
-            <Form.Goup controlId="loginPassword">
+            <Form.Group controlId="loginPassword">
                 <Form.Control type="password" placeholder="Password" />
-            </Form.Goup>
+            </Form.Group>
             <Button variant="primary" type="submit">
                 Login
             </Button>

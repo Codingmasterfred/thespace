@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-=======
+
+
 import React, { useState, useEffect } from "react"
 import Button from "react-bootstrap/Button"
 import { v4 as uuidv4 } from 'uuid';
@@ -485,5 +485,5 @@ function Corporate() {
         </div>
     )
 }
-export default Corporate
->>>>>>> a5205f8e2b8936109aaa66b3acd8b783638f7535
+export default Corporate;
+
