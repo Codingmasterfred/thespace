@@ -47,7 +47,7 @@ function LandingPage() {
     console.log('Form submitted with values:', values);
 
     // Send user information to the backend using Axios
-    axios.post('http:localhost:3001/freelance', values)
+    axios.post('http:localhost:3001/Freelance', values)
       .then((response) => {
         console.log('User information sent to the backend:', response.data);
         // You can navigate to another page or handle the response as needed
